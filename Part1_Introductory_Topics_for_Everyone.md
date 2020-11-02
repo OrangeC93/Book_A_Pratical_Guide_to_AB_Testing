@@ -36,10 +36,15 @@ When controlled experiments are not possible, modeling could be done, and other 
 3. The organization recognizes that it is poor at assessing the value of ideas. 
 
 #### Improvements over Time
+Changes are improved over time and step by step. 
+
+#### Strategy, Tactics, and Their Relationship to Experiments
 
 
 
 ## 2 Running and Analyzing Experiments
+
+
 
 ## 3 Twyman's Law and Experimentation Trustworthiness 
 
