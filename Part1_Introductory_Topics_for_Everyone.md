@@ -43,8 +43,51 @@ Changes are improved over time and step by step.
 
 
 ## 2 Running and Analyzing Experiments
+#### An example: 
+Add a coupon code field to the checkout page, and test two different UIs, and would like to evaluate the impact on revenue, the hypothesis is adding a coupon code field to the checkout page will degrade revenue. Treatment1: coupon or gift code field below credit card information, Treatment2: coupon or gift code as a popup.
+- OEC： they do not recommend the overall revenue since it depends on the number of users in each varaint, so a normalized metric by the actual sample size, like **making revenue per users** is a good OEC, but how to determin the denominator
+  - All users who visited the site: we need to exclude the people who does not initiated checkout since they'll not be impacted by the changes. 
+  - Only users who complete the purchase process: it's incorrect, as it assumes that the change will impact the amount purchased, not the percentage of users who complete the purchase, if more users purchase, revenue per user may drop even though total revenue increases.
+  - Only users who start the purchase process: this is the best choice, given where the change is in the funnel, we include all potentially affected users, but no unaffected who dilute the result.
+ 
+#### Designing the experiment:
+What's the randomization unit: 
+- Users.
+
+What's the population of radomization units do we want to target: 
+- If we want to detect a smail change or a lower p value thereshold, we need to increase the sample size.
+- If it's for large changes where you're uncertain about how users might react, you may want to start with a smaller proportion.
+- Does this experiment need to share traffic with other experiments?
+
+How long to run the experiment:
+- More users
+- Day of week effect
+- Seasonality
+- Primary and novelty effect
 
 
+The experiment design is now as follows: 
+1. The randomization unit is a user. 
+2. We will target all users and analyze those who visit the checkout page. 
+3. To have 80% power to detect at least a 1% change in revenue-per-user, we will conduct a power analysis to determine size. 
+4. This translates into running the experiment for a minimum of four days with a 34/33/33% split among Control/Treatment one/Treatment two. We will run the experiment for a full week to ensure that 
+
+#### Running the Experiment and Getting Data 
+To run an experiment, we need indtrumentation to get logs data on how users are interacting with the site asn infrasture to be able to run an experiment, ranging from experiment configureation to variant assignment.
+
+#### Interpreting the Results
+Sanity check: look at the guardrail metrics or invariants. These metrics should not change between the Control and Treatment. There are two types of invariant metrics: 
+1. Trust-related guardrail metrics, such as expecting the Control and Treatment samples to be sized according to the configuration or that they have the same cache-hit rates. 
+2. Organizational guardrail metrics, such as latency, which are important to the organization and expected to be an invariant for many experiments. In the checkout experiment, it would be very surprising if latency changed.  
+
+#### From Results to Decision
+We need to consider more under a broader context:
+- Tradeoff between different metrics: user engagement goes up but revenue goes down 
+- The cost of launching: (1) build (2)maintenanace
+- Downside of making wrong decision
+
+We may need to update the thresholds pior to the start of the experiment to reflect the broader context: 
+![image](/img/figure2.4.png)
 
 ## 3 Twyman's Law and Experimentation Trustworthiness 
 
