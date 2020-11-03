@@ -98,4 +98,29 @@ We may need to update the thresholds pior to the start of the experiment to refl
 ```
 
 ## 3 Twyman's Law and Experimentation Trustworthiness 
+#### Misinterpretation of the Statistical Results
+- Lack of Statistical Power: a common mistake is to assume that just because a metric is not statistically significant, there is no Treatment effect. It could very well be that the experiment is underpowered to detect the effect size we are seeing, that is, there are not enough users in the test. For example, an evaluation of 115 A/B tests at GoodUI.org suggests that most were underpowered.
+
+- Misinterpreting p-values: the p-value is the probability of obtaining a result equal to or more extreme than what was observed, assuming that the Null hypothesis is true.
+Here's one incorrect statement: p-value = .05 means that if you reject the Null hypothesis, the probability of a false positive is only 5%. 
+
+- Peeking at pvalues: when running an online controlled experiment, you could continuously monitor the p-values. Here are two alternatives: Optimizely implemented a solution based on the first method, whereas the experimentation platforms being used at Google, LinkedIn, and Microsoft use the second. 
+  1. Use sequential tests with always valid p-values.
+  2. Use a predetermined experiment duration, such as a week, for the determining statistical significance. 
+
+- Multiple Hypothesis Test: when there are multiple tests, and we choose the lowest p-value, our estimates of the p-value and the effect size are likely to be biased.
+
+- Confidence Intervals: there is a duality between p-values and confidence intervals. For the Null hypothesis of no-difference commonly used in controlled experiments, a 95% confidence interval of the Treatment effect that does not cross zero implies that the p-value is < 0.05. 
+  - A common mistake is to look at the confidence intervals separately for the Control and Treatment, and assume that if they overlap, the Treatment effect is not statistically different. The opposite, however, is true: if the 95% confidence intervals do not overlap, then the Treatment effect is statistically significant with p-value < 0.05. 
+  - Another common misunderstanding about confidence intervals is the belief that the presented 95% confidence interval has a 95% chance of containing the true Treatment effect. 
+
+#### Threats to Internal Validity 
+- Violation of SUTVA: experiment units (e.g., users) do not interfere with one another. Their behavior is impacted by their own variant assignment, and not by the assignment of others. The assumption could clearly be violated in settings, including the following: (1)Social Networks (2)Skype(communication tool) (3)Document authoring tool, such as Microsoft Office and Google Docs (4)Two-sided marketingplaces, such as auctions, Airbnb, eBay, Lift or Uber (5)Shared resources, such as CPU, storage and caches
+
+- Survivorship Bias: analyzing users who have been active for some time (e.g., two months) introduces survivorship bias. 
+
+- [Intention-to-Treat](https://zhuanlan.zhihu.com/p/93174068):
+In some experiments, there is non-random attrition from the variants. For example, in medical settings, patients in a Treatment may stop taking a medication if it has side effects. In the online world, you may offer all advertisers the opportunity to optimize their ad campaign, but only some advertisers choose to do the suggested optimization. Analyzing only those who participate, results in selection bias and commonly overstates the Treatment effect. Intention-to-treat uses the initial assignment, whether it was executed or not. The Treatment effect we are measuring is therefore based on the offer, or intention to treat, not whether it was actually applied. 
+
+- [Sample Ratio Mismatch(SRM)](http://www.woshipm.com/pmd/3759717.html):If the ratio of users (or any randomization unit) between the variants is not close to the designed ratio, the experiment suffers from a Sample Ratio Mismatch (SRM). For example, if the experiment design is for a ratio of one-to-one (equally sized Control and Treatment), then deviations in the actual ratio of users in an experiment likely indicate a problem (see Chapter 21 ) that requires debugging. 
 
