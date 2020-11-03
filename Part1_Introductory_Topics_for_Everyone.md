@@ -131,7 +131,15 @@ In some experiments, there is non-random attrition from the variants. For exampl
   - Data pipeline impacted by Treatment: Bot filtering is a serious problem, especially for search engines. For Bing, over 50% of US traffic is from bots, and that number is higher than 90% in China and Russia. 
 
 #### Threats to External Validity
+An important check for primacy and novelty effect s is to plot usage over time and see whether it ’ s increasing or decreasing. 
 
 #### Segment Differences
+Analyzing a metric by different segments can provide interesting insights and lead to discoveries, What are good segments? Here are several: （1）market or country (2) device or platform (3) time of day and day of week (4) user type (5) user account characteristic
 
-#### Simpson's Paradox
+Segmented views are commonly used two ways: 
+1. Segmented view of a metric, independent of any experiment. 
+2. Segmented view of the Treatment effect for a metric, in the context of an experiment, referred to in Statistics as heterogeneous Treatment effects , indicating that the Treatment effect is not homogenous or uniform across different segments. 
+
+
+#### [Simpson's Paradox](https://towardsdatascience.com/solving-simpsons-paradox-e85433c68d03)
+#### Encourage Healthy Skepticism 
