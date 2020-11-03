@@ -100,27 +100,38 @@ We may need to update the thresholds pior to the start of the experiment to refl
 ## 3 Twyman's Law and Experimentation Trustworthiness 
 #### Misinterpretation of the Statistical Results
 - Lack of Statistical Power: a common mistake is to assume that just because a metric is not statistically significant, there is no Treatment effect. It could very well be that the experiment is underpowered to detect the effect size we are seeing, that is, there are not enough users in the test. For example, an evaluation of 115 A/B tests at GoodUI.org suggests that most were underpowered.
-
 - Misinterpreting p-values: the p-value is the probability of obtaining a result equal to or more extreme than what was observed, assuming that the Null hypothesis is true.
-Here's one incorrect statement: p-value = .05 means that if you reject the Null hypothesis, the probability of a false positive is only 5%. 
-
+  - Here's one incorrect statement: p-value = .05 means that if you reject the Null hypothesis, the probability of a false positive is only 5%. 
 - Peeking at pvalues: when running an online controlled experiment, you could continuously monitor the p-values. Here are two alternatives: Optimizely implemented a solution based on the first method, whereas the experimentation platforms being used at Google, LinkedIn, and Microsoft use the second. 
   1. Use sequential tests with always valid p-values.
   2. Use a predetermined experiment duration, such as a week, for the determining statistical significance. 
-
 - Multiple Hypothesis Test: when there are multiple tests, and we choose the lowest p-value, our estimates of the p-value and the effect size are likely to be biased.
-
 - Confidence Intervals: there is a duality between p-values and confidence intervals. For the Null hypothesis of no-difference commonly used in controlled experiments, a 95% confidence interval of the Treatment effect that does not cross zero implies that the p-value is < 0.05. 
   - A common mistake is to look at the confidence intervals separately for the Control and Treatment, and assume that if they overlap, the Treatment effect is not statistically different. The opposite, however, is true: if the 95% confidence intervals do not overlap, then the Treatment effect is statistically significant with p-value < 0.05. 
   - Another common misunderstanding about confidence intervals is the belief that the presented 95% confidence interval has a 95% chance of containing the true Treatment effect. 
 
 #### Threats to Internal Validity 
-- Violation of SUTVA: experiment units (e.g., users) do not interfere with one another. Their behavior is impacted by their own variant assignment, and not by the assignment of others. The assumption could clearly be violated in settings, including the following: (1)Social Networks (2)Skype(communication tool) (3)Document authoring tool, such as Microsoft Office and Google Docs (4)Two-sided marketingplaces, such as auctions, Airbnb, eBay, Lift or Uber (5)Shared resources, such as CPU, storage and caches
+- Violation of SUTVA: experiment units (e.g., users) do not interfere with one another. The assumption could clearly be violated in settings, including the following: (1)Social Networks (2)Skype(communication tool) (3)Document authoring tool, such as Microsoft Office and Google Docs (4)Two-sided marketingplaces, such as auctions, Airbnb, eBay, Lift or Uber (5)Shared resources, such as CPU, storage and caches
 
 - Survivorship Bias: analyzing users who have been active for some time (e.g., two months) introduces survivorship bias. 
 
 - [Intention-to-Treat](https://zhuanlan.zhihu.com/p/93174068):
 In some experiments, there is non-random attrition from the variants. For example, in medical settings, patients in a Treatment may stop taking a medication if it has side effects. In the online world, you may offer all advertisers the opportunity to optimize their ad campaign, but only some advertisers choose to do the suggested optimization. Analyzing only those who participate, results in selection bias and commonly overstates the Treatment effect. Intention-to-treat uses the initial assignment, whether it was executed or not. The Treatment effect we are measuring is therefore based on the offer, or intention to treat, not whether it was actually applied. 
 
-- [Sample Ratio Mismatch(SRM)](http://www.woshipm.com/pmd/3759717.html):If the ratio of users (or any randomization unit) between the variants is not close to the designed ratio, the experiment suffers from a Sample Ratio Mismatch (SRM). For example, if the experiment design is for a ratio of one-to-one (equally sized Control and Treatment), then deviations in the actual ratio of users in an experiment likely indicate a problem (see Chapter 21 ) that requires debugging. 
+- [Sample Ratio Mismatch(SRM)](http://www.woshipm.com/pmd/3759717.html): if the ratio of users (or any randomization unit) between the variants is not close to the designed ratio, the experiment suffers from a Sample Ratio Mismatch (SRM). For example, if the experiment design is for a ratio of one-to-one (equally sized Control and Treatment), then deviations in the actual ratio of users in an experiment likely indicate a problem that requires debugging. Here're some examples:
+  - Browser redirects: redirect the treatment to another page, there're several reasons: (1) a performance differences: users in the treatment group suffer an extra redirect (2) bots: robots handle redirects differently (3) redirects are asymmetirc: treated users may bookmark it or pass the link to their friends.
+  - Lossy instrumentation: ctr is known to be lossy, which is not normally an issue as the loss is similar for all variants but sometimes the Treatment can impact the loss rate, making low-activity users appear at a different rate and cause an SRM
+  - Residual or carryover effects: new experiment may involve bugs, even though after a quick fix and restart the experiment, some users were already impacted, so it's important to run pre-experiment A/Atest. The opposite could also be true, sometimes when a experiment was stopped and restarted, there was a significant carryover effect from the prior experiment, which is enough to create an SRM and invalidate the results
 
+  - Bad has function for randomization: zhao et al. ( 2016 ) describe how Treatment assignment was done at Yahoo! using the Fowler-Noll-Vo hash function, which sufficed for single-layer randomization, but which failed to properly distribute users in multiple concurrent experiments when the system was generalized to overlapping experiments. Cryptographic hash functions like MD5 are good (Kohavi et al. 2009 ) but slow; a non-cryptographic function used at Microsoft is Jenkins SpookyHash 
+
+  - Triggering impacted by Treatment: If triggering is done based on attributes that are changing over time, then you must ensure that no attributes used for triggering could be impacted by the Treatment. 
+
+  - Time of Day Effects
+  - Data pipeline impacted by Treatment: Bot filtering is a serious problem, especially for search engines. For Bing, over 50% of US traffic is from bots, and that number is higher than 90% in China and Russia. 
+
+#### Threats to External Validity
+
+#### Segment Differences
+
+#### Simpson's Paradox
