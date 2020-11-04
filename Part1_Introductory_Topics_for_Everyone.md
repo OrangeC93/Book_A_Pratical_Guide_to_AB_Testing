@@ -143,3 +143,6 @@ Segmented views are commonly used two ways:
 
 #### [Simpson's Paradox](https://towardsdatascience.com/solving-simpsons-paradox-e85433c68d03)
 #### Encourage Healthy Skepticism 
+
+
+## Experimentation Platform and Culture
