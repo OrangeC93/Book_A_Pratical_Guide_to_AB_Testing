@@ -63,4 +63,3 @@ Your goal and driver metrics need to be hard to game: One common scenario is to 
 
 ## Metrics for Experimentation and the Overall Evaluation Criterion 
 
-Kohavi, Ron,Tang, Diane,Xu, Ya. Trustworthy Online Controlled Experiments (p. 102). Cambridge University Press. Kindle Edition. 
