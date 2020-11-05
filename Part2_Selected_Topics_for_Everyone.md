@@ -20,3 +20,47 @@ Multiple proposals have been developed to estimate perceived performance, includ
 
 #### Extreme Results
 (1) Speed performance matters might be overstated (2) Too fast may reduce users trust
+
+## Organizational Metrics
+#### Metrics Taxonomy 
+(1) Goal metrics (2) Driver metrtics (3) Guadrail metrics (4) Others: Asset vs engagement metrics, business vs operational metrics, data quality metrics, diagnosis or dedug metrics
+
+Depending on organization size and objectives, you may have multiple teams, each with their own goal, driver, and guardrail metrics, and all of which must align with your overall goal, driver, guardrail metrics. 
+
+#### Formulating Metrics: Principles and Techniques
+1. Ensure that your goal metrics are (1) simple (2) stable
+2. Ensure that driver metrics are (1) aligned with goal (2) actionable and relevant (3) sensitive (4) resistant to gaming
+
+Somes helpful techniques and considerations for developing metrics: 
+- Use hypotheses from less-scalable method (survey) to generate ideas, and then validate them in scalable data analyses to determine a precise definition.
+- Consider quality when defining goal or driver metrics, for example, LinkedIn profile is a “ good ” profile if it contains sufficient information to represent the user.
+- When incorporating statistical models in the definition of a metric, it is essential to keep the model interpretable and validated over time. Otherwise, it may be hard to get buy-in from stakeholders, even harder if a sudden drop on the metric needs to be investigated. 
+- Sometimes it may be easier to precisely measure what you **do not** want, such as user dissatisfaction or unhappiness, than it is to measure what you want. 
+- Always remember that metrics are themselves proxies; each has its own set of failure cases. For example, a search engine may want to use CTR to measure user engagement but driving just CTR may lead to increased clickbait. In such cases, you must create additional metrics to measure the edge cases. In this example, one possibility is to use human evaluation as a metric to measure relevance and counterbalance a tendency towards rewarding clickbait. 
+
+#### Evaluating Metrics
+Most metrics evaluation and validation happen during the formulation phase, but there is work that needs to be done over time and continuously. For example, before adding a new metric, evaluate whether it provides additional information compared to your existing metrics. 
+
+One of the most common and challenging evaluations is establishing the causal relationship of driver metrics to organizational goal metrics, that is, whether this driver metric really drives the goal metrics, Here are a few high-level approaches to tackle causal validation (1) Utilize other data sources such as surveys, focus groups, and UER studies (2) Analyze observational data (3) Check whether similar validation is done at other companies (4) Conduct an experiment with a primary goal of evaluating metrics (5) User a corpus of historical experiments as golden samples for evaluating new metrics
+
+#### Evolving Metrics
+Metrics may envolve along with the business, environment and your understanding. Certain metrics may evolve more quickly than others. 
+
+#### Sidebar: Guardrail Metrics
+There are two types of guardrail metrics: trustworthiness-related guardrail metrics and organizational guardrail metrics. 
+- Trustworthiness-related guardrail metrics are necessary to ensure that experimental results are trustworthy. 
+- Organizational guardrail metrics: an increase in latency of even a few milliseconds can result in revenue loss and a reduction in user satisfaction. Thus, latency is often used as a guardrail metric because it is so sensitive, especially relative to revenue and user satisfaction metrics. 
+  - HTML response size per page
+  - JavaScript error per page
+  - Revenue-per-user
+  - Pageviews-per-user
+  - Client crashes
+ 
+#### Sidebar: Gameability
+Your goal and driver metrics need to be hard to game: One common scenario is to use short-term revenue as a key metric. However, you could increase short-term revenues by raising prices or plastering a website with ads, and either of those would likely lead to users abandoning the site and customer LTV declining. Generally, we recommend using metrics that measure user value and actions. You should avoid vanity metrics that indicate a count of your actions, which users often ignore.
+
+
+
+## Metrics for Experimentation and the Overall Evaluation Criterion 
+
+Kohavi, Ron,Tang, Diane,Xu, Ya. Trustworthy Online Controlled Experiments (p. 102). Cambridge University Press. Kindle Edition. 
