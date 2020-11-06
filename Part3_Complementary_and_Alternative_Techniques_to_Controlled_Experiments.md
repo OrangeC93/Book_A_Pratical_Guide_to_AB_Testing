@@ -36,6 +36,16 @@ Some potential issues are needed to consider:
 - The population can easily be biased 
 
 #### External Data
+External data is data relevant to you and what you are looking at that a party external to your company has collected data and analyzed. 
+
 
 ## Observational Causal Study
+#### When Controlled Experiments Are Not Possible
+- Not under the control of organization, user behaviour when they change their phone
+- Two few units, M&A senario
+- May incur too large an opportunity cost, running ads during Superbowl
+- Change is expensive relative to the perceived value
+- Cannot be properly randomized, when assessing the  value of TV ads
+- Unethical or illegal, withholding medical treatment that are believed to be beneficial
 
+## Designs for Observational Causal Studies
