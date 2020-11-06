@@ -76,4 +76,10 @@ If you are unable to combine your key metrics into a single OEC, try to minimize
 When you have  k (independent) metrics, the probability of having at least one p-value < 0.05 is 1 − (1 − 0.05) k .  For  k  = 5 , you have a 23% probability of seeing something statistically significant.  For  k  = 10 , that probability rises to 40%. The more metrics you have, the higher the chance that one would be significant, causing potential conflicts or questions. 
 ```
 
-#### Example: OCE for Email at Amazon
+#### Example1: OEC for Email at Amazon
+- Previous: fitness fucntion, give credit to a program based on the revenue it generated from users clicking thought the email. 
+- Problem: this metric is monotonically increasing with email volume.
+- After: (Revenue - unsubscribe LTV Loss)/n
+
+#### Example2: OEC for Bing search Engine
+A ranker bug of search engine does not align with the two key metrics in experiments: query share and revenue.
