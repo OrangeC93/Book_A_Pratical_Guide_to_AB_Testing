@@ -75,3 +75,7 @@ Another class of approaches here is to construct comparable Control and Treatmen
 Geographically based experiments commonly use this technique. 
 
 Note that this method can also be applied even when you do not make the change, and the change happens exogenously. For example, when a change was made to the minimum wage in New Jersey, researchers who wanted to study its impact on employment levels in fast-food restaurants, compared it to eastern Pennsylvania, which matched on many characteristics 
+
+#### Pitfalls
+(1) Confounders (2)Spurious correlations
+
