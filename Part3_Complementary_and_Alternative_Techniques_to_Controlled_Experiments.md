@@ -49,3 +49,29 @@ External data is data relevant to you and what you are looking at that a party e
 - Unethical or illegal, withholding medical treatment that are believed to be beneficial
 
 ## Designs for Observational Causal Studies
+#### Interrupted Time Series
+Interrupted Time Series (ITS) is a quasi-experimental design, where you can control the change within your system, but you cannot randomize the Treatment to have a proper Control and Treatment. Instead, you use the same population for Control and Treatment, and you vary what the population experiences over time. 
+![image](/img/its.png)
+
+Issues: (1)Time-based effects as the comparisons are made across different points of time,like seasonality, other underlying system changes, Changing back and forth multiple times will help reduce the likelihood of that (2) User experience
+
+#### Interleaved Experiments
+Interleaved experiment design is a common design used to evaluate ranking algorithm changes, such as in search engines or search at a website . In an interleaved experiment, you have two ranking algorithms, X and Y. Algorithm X would show results x 1 , x 2 , … x n in that order, and algorithm Y would show y 1 , y 2 , … y n . An interleaved experiment would intersperse results mixed together, e.g. x 1 , y 1 , x 2 , y 2 , … x n , y n with duplicate results removed. 
+
+One way to evaluate the algorithms would be to compare the click-through rate on results from the two algorithms. While this design is a powerful experiment design, it is limited in its applicability because the results must be homogenous. 
+
+#### Regression Discountinuity Design
+Regression Discontinuity Design (RDD) is a methodology that can be used whenever there is a clear threshold that identifies the Treatment population. Based on that threshold, we can reduce selection bias by identifying the population that is just below the threshold as Control and compared to the population that is just above the threshold as Treatment. 
+![image](/img/rdd.png)
+One key issue is again confounding factors. In RDD, the threshold discontinuity may be contaminated by other factors that share the same threshold. For example, a study of the impact of alcohol that chooses the legal age of 21 as the threshold may be contaminated by the fact that this is also the threshold for legal gambling. 
+
+#### [Instrumented Variables and Natual Experiments](https://www.zhihu.com/question/29067965/answer/247659376)
+Instrumental Variables (IV) is a technique that tries to approximate random assignment. Specifically, the goal is to identify an Instrument that allows us to approximate random assignment (this happens organically in a natural experiment) 
+
+#### Propensity Score Matching
+Another class of approaches here is to construct comparable Control and Treatment populations, often by segmenting the users by common confounds, in something akin to stratified sampling. The idea is to ensure that the comparison between Control and Treatment population is not due to population mix changes. For example, if we are examining an exogenous change of the impact of users changing from Windows to iOS, we want to ensure that we are not measuring a demographic difference in the population. 
+
+#### [Difference in Differences](https://www.eddjberry.com/post/adjustment-in-a-b-testing/)
+Geographically based experiments commonly use this technique. 
+
+Note that this method can also be applied even when you do not make the change, and the change happens exogenously. For example, when a change was made to the minimum wage in New Jersey, researchers who wanted to study its impact on employment levels in fast-food restaurants, compared it to eastern Pennsylvania, which matched on many characteristics 
