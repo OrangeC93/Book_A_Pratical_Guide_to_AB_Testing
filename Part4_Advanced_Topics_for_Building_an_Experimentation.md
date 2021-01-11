@@ -14,5 +14,12 @@
 ## Instrumentation
 
 ## Choosing a Randomization Unit
+- Page-level: Each new web page viewed on a site is considered a unit. 
+- Session-level: This unit is the group of webpages viewed on a single visit. A session, or visit, is typically defined to end after 30 minutes of inactivity. 
+- User-level: All events from a single user is the unit. Note that a user is typically an approximation of a real user, with web cookies or login IDs typically used. Cookies can be erased, or in-private/incognito browser sessions used, leading to overcounting of users. For login IDs, shared accounts can lead to undercounting, whereas multiple accounts (e.g., users may have multiple e-mail accounts) can lead to overcounting. 
+
+When trying to decide on granularity, there're 2 main questions to consider:
+1. How important is the consistency of the user experience? (wether the user will notice the changes, As an extreme example, imagine that the experiment is on font color. If we use a fine granularity, such as page-level, then the font color could change with every page.)
+2. Which metrics matter? 
 
 
