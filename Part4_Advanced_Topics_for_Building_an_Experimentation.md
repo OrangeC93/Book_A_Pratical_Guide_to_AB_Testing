@@ -53,3 +53,21 @@ The other question about scope is the **longitudinal** stability of the ID. In s
 
 One final option that we do not recommend unless it is the only option is **IP address**. IP-based variant assignment may be the only option for infrastructure changes, such as for comparing latency using one hosting service (or one hosting location) versus another, as this can often only be controlled at the IP level. 
 
+## Ramping Experiment Exposure: trading off speed, quality and risk
+![image](/img/ramping.png)
+The first phase is mainly for risk mitigation , so the SQR framework focuses on trading off speed and risk. The second phase is for precise measurement, so the focus is on trading off speed and quality. The last two phases are optional and address additional operational concerns (third phase) and long-term impact (fourth phase). 
+- Pre MPR
+  1. Creat "rings" of testing populations and gradully expose the treatment to successive rings to mitigate risk. 
+  2. Automatically dialing up traffic until it reaches the desired allocation. The 
+  3. Producing real-time or near-real-time measurements on key guardrail metrics. 
+- MPR: MPR is the ramp phase dedicated to measuring the impact of the experiment. We want to highlight our recommendation to keep experiments at MPR for a week, and longer if novelty or primacy effects are present. T
+  - This ramp phase must be long enough to capture time-dependent factors. For example, an experiment that runs for only one day will have results biased towards heavy users. 
+  - While we usually get smaller variance with a longer experiment, there is a diminishing return as we wait longer. 
+- POST MPR: There are some concerns about increasing traffic load to some engineering infrastructures that may warrant incremental ramps before going to 100%. 
+- long Term holdout or replication: We have seen increasing popularity in long-term holdouts , also called holdbacks , where certain users do not get exposed to Treatment for a long time. We want to caution not to make a long-term holdout a default step in the ramping process. 
+  - When the long-term Treatment effect may be different from the short-term effect (see Chapter 23 ). This can be because: 
+    a. The experiment area is known to have a novelty or primacy effect, or 
+    b. The short-term impact on key metrics is so large that we must ensure that the impact is sustainable for reasons, such as financial forecasting
+    c. The short-term impact is small-to-none, but teams believe in a delayed effect (e.g., due to adoption or discoverability). 
+  - When an early indicator metric shows impact, but the true-north metric is a long-term metric, such as a one-month retention.
+  - When there is a benefit of variance reduction for holding longer 
