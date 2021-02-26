@@ -66,8 +66,8 @@ The first phase is mainly for risk mitigation , so the SQR framework focuses on 
 - POST MPR: There are some concerns about increasing traffic load to some engineering infrastructures that may warrant incremental ramps before going to 100%. 
 - long Term holdout or replication: We have seen increasing popularity in long-term holdouts , also called holdbacks , where certain users do not get exposed to Treatment for a long time. We want to caution not to make a long-term holdout a default step in the ramping process. 
   - When the long-term Treatment effect may be different from the short-term effect (see Chapter 23 ). This can be because: 
-    a. The experiment area is known to have a novelty or primacy effect, or 
-    b. The short-term impact on key metrics is so large that we must ensure that the impact is sustainable for reasons, such as financial forecasting
-    c. The short-term impact is small-to-none, but teams believe in a delayed effect (e.g., due to adoption or discoverability). 
+    - The experiment area is known to have a novelty or primacy effect, or 
+    - The short-term impact on key metrics is so large that we must ensure that the impact is sustainable for reasons, such as financial forecasting
+    - he short-term impact is small-to-none, but teams believe in a delayed effect (e.g., due to adoption or discoverability). 
   - When an early indicator metric shows impact, but the true-north metric is a long-term metric, such as a one-month retention.
   - When there is a benefit of variance reduction for holding longer 
