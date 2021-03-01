@@ -123,12 +123,15 @@ We may need to update the thresholds pior to the start of the experiment to refl
   - Another common misunderstanding about confidence intervals is the belief that the presented 95% confidence interval has a 95% chance of containing the true Treatment effect. 
 
 #### Threats to Internal Validity 
-- Violation of SUTVA: experiment units (e.g., users) do not interfere with one another. The assumption could clearly be violated in settings, including the following: (1)Social Networks (2)Skype(communication tool) (3)Document authoring tool, such as Microsoft Office and Google Docs (4)Two-sided marketingplaces, such as auctions, Airbnb, eBay, Lift or Uber (5)Shared resources, such as CPU, storage and caches
-
+- Violation of SUTVA: experiment units (e.g., users) do not interfere with one another. The assumption could clearly be violated in settings, including the following: 
+  - Social Networks 
+  - Skype(communication tool) 
+  - Document authoring tool, such as Microsoft Office and Google Docs 
+  - Two-sided marketingplaces, such as auctions, Airbnb, eBay, Lift or Uber 
+  - Shared resources, such as CPU, storage and caches
 - Survivorship Bias: analyzing users who have been active for some time (e.g., two months) introduces survivorship bias. 
-
-- [Intention-to-Treat](https://zhuanlan.zhihu.com/p/93174068):
-In some experiments, there is non-random attrition from the variants. For example, in medical settings, patients in a Treatment may stop taking a medication if it has side effects. In the online world, you may offer all advertisers the opportunity to optimize their ad campaign, but only some advertisers choose to do the suggested optimization. Analyzing only those who participate, results in selection bias and commonly overstates the Treatment effect. Intention-to-treat uses the initial assignment, whether it was executed or not. The Treatment effect we are measuring is therefore based on the offer, or intention to treat, not whether it was actually applied. 
+- [Intention-to-Treat](https://zhuanlan.zhihu.com/p/93174068): In some experiments, there is non-random attrition from the variants. 
+-   For example, in medical settings, patients in a Treatment may stop taking a medication if it has side effects. In the online world, you may offer all advertisers the opportunity to optimize their ad campaign, but only some advertisers choose to do the suggested optimization. Analyzing only those who participate, results in selection bias and commonly overstates the Treatment effect. Intention-to-treat uses the initial assignment, whether it was executed or not. The Treatment effect we are measuring is therefore based on the offer, or intention to treat, not whether it was actually applied. 
 
 - [Sample Ratio Mismatch(SRM)](http://www.woshipm.com/pmd/3759717.html): if the ratio of users (or any randomization unit) between the variants is not close to the designed ratio, the experiment suffers from a Sample Ratio Mismatch (SRM). For example, if the experiment design is for a ratio of one-to-one (equally sized Control and Treatment), then deviations in the actual ratio of users in an experiment likely indicate a problem that requires debugging. Here're some examples:
   - Browser redirects: redirect the treatment to another page, there're several reasons: (1) a performance differences: users in the treatment group suffer an extra redirect (2) bots: robots handle redirects differently (3) redirects are asymmetirc: treated users may bookmark it or pass the link to their friends.
