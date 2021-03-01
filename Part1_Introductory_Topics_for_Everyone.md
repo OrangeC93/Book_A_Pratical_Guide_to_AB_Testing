@@ -14,7 +14,8 @@ Randomization Unit: A pseudo-randomization (e.g.hashing) process is applied to u
 
 #### Why experiment? Correlations, Causality and Trustworthiness
 ```
-Example1： X% users churn every month, you introduce a new feature and observe that churn rate for users using that feature is X%/2, you might be tempted to claim causality, the feature is reducing churn by half.
+Example1:
+X% users churn every month, you introduce a new feature and observe that churn rate for users using that feature is X%/2, you might be tempted to claim causality, the feature is reducing churn by half.
 
 Example2:
 Office 365 users that see error messages and experience crashes have lower churn rates, but that does not mean that Office 365 should show more error messages or that Microsoft should lower code quality, causing more crashes. It turns out that all three events are caused by a single factor: usage. Heavy users of the product see more error messages, experience more crashes, and have lower churn rates. Correlation does not imply causality and overly relying on these observations leads to faulty decisions. 
@@ -23,12 +24,12 @@ Office 365 users that see error messages and experience crashes have lower churn
 We believe online controleed experiments are (1) best scientific way to establish causality with high probability (2) able to detect small changes that are harder to detect with other techniques, such as changes overtime (sensitivity) (3) able to detect unexpected changes, often underappreciated, but many experiments uncover suprising impacts on other metrics, be it performance degradation, increased crashes/errors, or cannibalizing clicks from other features
 
 #### Necessary ingredients for running useful controlled experiments
-1. There're experimental units taht can be assigned to different variants with no interference or little interference. 
-2. There're enough experimental units.
+1. There're experimental units taht can be assigned to different variants with no interference or little interference
+2. There're enough experimental units
 3. OEC are agreed upon and can be pratically evaluated.
 4. Changes are easy to make
 
-When controlled experiments are not possible, modeling could be done, and other experimental techniques might be used (see Chapter 10 ). The key is that if controlled experiments can be run, they provide the most reliable and sensitive mechanism to evaluate changes. 
+When controlled experiments are not possible, modeling could be done, and other experimental techniques might be used (see Chapter 10). The key is that if controlled experiments can be run, they provide the most reliable and sensitive mechanism to evaluate changes. 
 
 #### Tenets
 1. The organization wants to make data-driven decisions and has formalized an OEC. 
@@ -39,16 +40,16 @@ When controlled experiments are not possible, modeling could be done, and other 
 Changes are improved over time and step by step. 
 
 #### Strategy, Tactics, and Their Relationship to Experiments
-
+...
 
 
 ## 2 Running and Analyzing Experiments
 #### An example: 
 Add a coupon code field to the checkout page, and test two different UIs, and would like to evaluate the impact on revenue, the hypothesis is adding a coupon code field to the checkout page will degrade revenue. Treatment1: coupon or gift code field below credit card information, Treatment2: coupon or gift code as a popup.
 - OEC： they do not recommend the overall revenue since it depends on the number of users in each varaint, so a normalized metric by the actual sample size, like **making revenue per users** is a good OEC, but how to determin the denominator
-  - All users who visited the site: we need to exclude the people who does not initiated checkout since they'll not be impacted by the changes. 
-  - Only users who complete the purchase process: it's incorrect, as it assumes that the change will impact the amount purchased, not the percentage of users who complete the purchase, if more users purchase, revenue per user may drop even though total revenue increases.
-  - Only users who start the purchase process: this is the best choice, given where the change is in the funnel, we include all potentially affected users, but no unaffected who dilute the result.
+  - **All users who visited the site**: we need to exclude the people who does not initiated checkout since they'll not be impacted by the changes. 
+  - **Only users who complete the purchase process**: it's incorrect, as it assumes that the change will impact the amount purchased, not the percentage of users who complete the purchase, if more users purchase, revenue per user may drop even though total revenue increases.
+  - **Only users who start the purchase process**: this is the best choice, given where the change is in the funnel, we include all potentially affected users, but no unaffected who dilute the result.
  
 #### Designing the experiment:
 What's the randomization unit: 
