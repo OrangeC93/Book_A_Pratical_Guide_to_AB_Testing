@@ -71,3 +71,24 @@ The first phase is mainly for risk mitigation , so the SQR framework focuses on 
     - he short-term impact is small-to-none, but teams believe in a delayed effect (e.g., due to adoption or discoverability). 
   - When an early indicator metric shows impact, but the true-north metric is a long-term metric, such as a one-month retention.
   - When there is a benefit of variance reduction for holding longer 
+
+## Scaling Experiment Analyses
+Data processing
+- sort and group by 
+- clean data: remove sessions that are unlikely to be real users, fix instrumentation issues such as duplicate event detection or incorrect timestamp handling
+- enrich the data:eg. add browser family and version 
+
+Data Computation: there're 2 common approchases
+1. Calculate Per-user statistics and joint to a table that maps users to experiments: it can be used for overall business reporting, not just experiments, you may also consider a flexible way to compute metrics or segments that needed for one or small set of experiments
+2. An alternative architecture is to fully integrate the computation of per-user metrics with the experiment analysis, where per-user metrics are computed along the way as needed without being materialized separately. Typically, 
+
+Also, Speed and efficiency increase in importance as experimentation scales across an organization. Bing, 
+
+Results summeary and visualization
+- Highlight key tests, such as [SRM](https://www.analytics-toolkit.com/glossary/sample-ratio-mismatch/), to clearly indicate whether the results are trustworthy. For example, Microsoft ’ s experimentation platform (ExP) hides the scorecard if key tests fail. 
+- Highlight the OEC and critical metrics, but also show the many other metrics, including guardrails, quality, and so on. 
+- Present metrics as a relative change, with clear indications as to whether the results are statistically significant. 
+Use color-coding and enable filters, so that significant changes are salient. 
+
+Segment drill-downs, including automatically highlighting interesting segments, can help ensure that decisions are correct and help determine whether there are ways to improve the product for poorly behaving segments 
+
