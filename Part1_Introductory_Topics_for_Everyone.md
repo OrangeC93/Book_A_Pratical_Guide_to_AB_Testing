@@ -89,13 +89,24 @@ We need to consider more under a broader context:
 
 We may need to update the thresholds pior to the start of the experiment to reflect the broader context: 
 ![image](/img/figure2.4.png)
+- The practical significance between boundary is drawn as two boundary lines
+- The estimated difference for each example result is the blackbox together with confidence level
 ```
 1. The result is not statistically significant and also no pratical significance
-2. The result is statistically and practically significant. Again, an easy decision: launch! 
-3. The result is statistically significant but not practically significant. In this case, you are confident about the magnitude of change, but that magnitude may not be sufficient to outweigh other factors such as cost. This change may not be worth launching. 
-4. Consider this example neutral, like our first example; however, the confidence intervals are outside of what is practically significant. If you run an experiment and find out it could either increase or decrease revenue by 10%, would you really accept that experiment and say that change is neutral? It ’ s better to say you do not have enough power to draw a strong conclusion, and it is also such that we do not have enough data to make any launch decision. For this result, we recommend running a follow-up test with more units, providing greater statistical power. 
-5. The result is likely practically significant but not statistically significant. So even though your best guess is that this change has an impact you care about, there is also a good chance that there is no impact at all. From a measurement perspective, the best recommendation would be to repeat this test but with greater power to gain more precision in the result. 
-6. The result is statistically significant, and likely practically significant. Like 5, it is possible that the change is not practically significant. Thus here, like the prior example, we suggest repeating the test with more power. From a launch/no-launch decision, however, choosing to launch is a reasonable decision. 
+   Iterate or abandon idea!
+3. The result is statistically and practically significant. 
+   Again, an easy decision: launch! 
+4. The result is statistically significant but not practically significant. 
+   In this case, you are confident about the magnitude of change, but that magnitude may not be sufficient to outweigh other factors such as cost. 
+   This change may not be worth launching. 
+5. Consider this example neutral, like our first example; however, the confidence intervals are outside of what is practically significant. 
+   If you run an experiment and find out it could either increase or decrease revenue by 10%, would you really accept that experiment and say that change is neutral? It's better to say you do not have enough power to draw a strong conclusion, and it is also such that we do not have enough data to make any launch decision. 
+   For this result, we recommend running a follow-up test with more units, providing greater statistical power. 
+7. The result is likely practically significant but not statistically significant.
+   So even though your best guess is that this change has an impact you care about, there is also a good chance that there is no impact at all. 
+   From a measurement perspective, the best recommendation would be to repeat this test but with greater power to gain more precision in the result. 
+9. The result is statistically significant, and likely practically significant. Like 5, it is possible that the change is not practically significant. 
+   Thus here, like the prior example, we suggest repeating the test with more power. From a launch/no-launch decision, however, choosing to launch is a reasonable decision. 
 ```
 
 ## 3 Twyman's Law and Experimentation Trustworthiness 
