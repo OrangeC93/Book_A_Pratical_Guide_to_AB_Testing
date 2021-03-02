@@ -44,8 +44,8 @@ Many people consider power an absolute property of a test and forget that it is 
 #### Bias (chapter3)
 
 #### Multiple Testing
-https://zhuanlan.zhihu.com/p/45715632
-https://www.invespcro.com/blog/multiple-testing-problem-how-adding-more-variations-to-your-ab-test-will-impact-your-results/
+- https://zhuanlan.zhihu.com/p/45715632
+- https://www.invespcro.com/blog/multiple-testing-problem-how-adding-more-variations-to-your-ab-test-will-impact-your-results/
 
 
 #### Fisher's meta analysis
