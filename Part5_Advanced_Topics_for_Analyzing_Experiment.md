@@ -102,3 +102,47 @@ The ability of detecting the Treatment effect when it exists is generally referr
     - You may want to compare Treatments against each other directly. How much does statistical power matter in such comparisons relative to testing against the Control? 
     - There are benefits of having the same sized Treatment and Control in the comparison, even though the pooled Control is more than likely bigger than the Treatment groups. Balanced variants lead to a faster normality convergence (see Chapter 17 ) and less potential concern about cache sizes (depending on how you cache implementation). 
 
+#### Variance of other statistics
+When it comes to time-based metrics, such as page-load-time (PLT), it is common to use quantiles, not the mean, to measure site-speed performance. For instance, the 90th or 95th percentiles usually measure user engagement-related load times, while the 99th percentile is more often server-side latency measurements. While you can always resort to bootstrap for conducting the statistical test by finding the tail probabilities, it gets expensive computationally as data size grows. On the other hand, if the statistic follows a normal distribution asymptotically, you can estimate variance cheaply. For example, the asymptotic variance for quantile metrics is a function of the density 
+
+There is another layer of complication. Most time-based metrics are at the event/page level, while the experiment is randomized at user level. In this case, apply a combination of density estimation and the delta method 
+
+## A/A Test
+#### Why A/A Tests?
+- Ensure that Type I errors are controlled (e.g., at 5%) as expected. 
+- Assessing metrics ’ variability. 
+- Ensure that no bias exists between Treatment and Control users, especially if reusing populations from prior experiments. 
+- Compare data to the system of record. 
+- Estimate variances for statistical power calculations. A/A tests provide variances of metrics that can help determine how long to run your A/B tests for a given minimal detectable effect. 
+
+#### Example1: Analysis Unit Differs from Randomization Unit 
+
+- The first is to count the clicks and divide by the number of page views; 
+- The second is to average each user ’ s CTR and then average all the CTRs. 
+
+There is no right or wrong in these definitions, both are useful definitions for CTR, but using different user averages yields different results. In practice, it is common to expose both metrics in scorecards, although we generally recommend definition 2 as we find it more robust to outliers, such as bots having many pageviews or clicking often. 
+
+#### Example 2: Optimizely Encouraged Stopping When Results Were Statistically Significant 
+
+#### Example 3: Browser Redirects 
+Our experience is that redirects usually fail A/A tests. Either build things so that there are no redirects (e.g., server-side returns one of two home pages) or execute a redirect for both Control and Treatment (which degrades the Control group). 
+
+#### Example 4: Unequal Percentages 
+ 
+- Uneven splits (e.g., 10%/90%) may suffer from shared resources providing a clear benefit to the larger variant (Kohavi and Longbotham 2010 , section 4). Specifically, least recently used (LRU) caches shared between Control and Treatment have more cache entries for the larger variant 
+- Another problem with unequal percentages is that the rate of convergence to a Normal Distribution is different. 
+
+##### Example 5: Hardware Difference
+Facebook had a service running on a fleet of machines. They built a new V2 of the service and wanted to A/B test it. They ran an A/A test between the new and old fleet, and even though they thought the hardware was identical, it failed the A/A test. Small hardware differences can lead to unexpected differences 
+
+#### How to Run A/A Tests
+Running a thousand A/A tests may be expensive, but here's a little trick you can use: replay the last week. This of course, assumes that you stored the relevant raw data. This is an example of why we say to store your data for running future tests and applying newly developed metrics. There are limits to this approach, of course: you will not catch performance issues or shared resources such as the LRU cache mentioned above, but it is a highly valuable exercise that leads to identifying many issues. 
+
+Because you are not really making a change to your product and the two variants being tested are identical, you can just simulate the A/A test. For each iteration, pick a new randomization hash seed for user assignment and replay the last week of data, splitting users into the two groups. Then generate the p-value for each metric of interest (usually tens to hundreds of metrics) and accumulate them into histograms, one for each metric. 
+
+#### When the A/A Test fails
+1. The distribution is skewed and clearly not close to uniform. 
+  - Is the independence assumption violated (as in the CTR example) because the randomization unit differs from the analysis unit? If so, deploy the delta method or bootstrapping. 
+  - Does the metric have a highly skewed distribution? Normal approximation may fail for a small number of users. In some cases, the minimum sample size may need to be over 100,000 users. Capped metrics or setting minimum sample sizes may be necessary.
+2. There is a large mass around p-value of 0.32, indicating a problem with outliers. 
+3. The distribution has a few point masses with large gaps. This happens when the data is single-valued (e.g., 0) with a few rare instances of non-zero values. The delta of the means can only take a few discrete values in such scenarios, and hence the p-value can only take a few values. Here again, the t-test is not accurate, but this is not as serious as the prior scenario, because if a new Treatment causes the rare event to happen often, the Treatment effect will be large and statistically
