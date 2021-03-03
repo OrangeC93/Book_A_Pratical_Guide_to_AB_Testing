@@ -46,7 +46,21 @@ Many people consider power an absolute property of a test and forget that it is 
 #### Multiple Testing
 - https://zhuanlan.zhihu.com/p/45715632
 - https://www.invespcro.com/blog/multiple-testing-problem-how-adding-more-variations-to-your-ab-test-will-impact-your-results/
+- http://home.uchicago.edu/amshaikh/webfiles/palgrave.pdf
+Multiple testing refers to any instance that involves the simultaneous testing of several hypotheses. This scenario is quite common in much of empirical research in economics. Some examples include: 
+- one fits a multiple regression model and wishes to decide which coefficients are different from zero; 
+- one compares several forecasting strategies to a benchmark and wishes to decide which strategies are outperforming the benchmark;
+- one evaluatesa program with respect to multiple outcomes and wishes to decide for which outcomes the program yields significant effects
 
+If one does not take the multiplicity of tests into account, then the probability that some of the true null hypotheses are rejected by chance alone may be unduly large. Take the case of S = 100 hypotheses being tested at the same time, all of them being true, with the size and level of each test exactly equal to α. For α = 0.05, one expects five true hypotheses to be rejected. Further, if all tests are mutually independent, then the probability that at least one
+true null hypothesis will be rejected is given by 1 − 1-0.05^100 = 0.994. The graph below illustrates how the overall type I error increases as the number of tests increases:
+![image](/img/test_error_number_of_test.png)
+
+**Bonferroni and Hochberg and BHY adjustment**
+
+The simplest solution that works for a limited number of comparisons is using statistical methods correction for multiple testing, which rely on some statistical adjustments made to p-values with the goal of reducing the chances of obtaining false-positive results. 
+- Advantage: Simple. For example, the significance level for a single test would be 0.05 divided by 3 (number of variations)
+- Disadvantage: Too conservative. In a sense, using the Bonferroni correction, we are more likely not to state any difference between the control and any other variation.
 
 #### Fisher's meta analysis
 Fisher ’ s method (or any other meta-analysis technique) is great for increasing power and reducing false-positives. You may have an experiment that is underpowered even after applying all power-increasing techniques, such as maximum power traffic allocation (see Chapter 15 ) and variance reduction (see Chapter 22 ). In this case, you can consider two or more (orthogonal) replications of the same experiment (one after another) and achieve higher power by combining the results using Fisher ’ s method. 
