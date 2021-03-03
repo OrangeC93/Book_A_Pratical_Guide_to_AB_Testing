@@ -62,6 +62,7 @@ The simplest solution that works for a limited number of comparisons is using st
 - Advantage: Simple. For example, the significance level for a single test would be 0.05 divided by 3 (number of variations)
 - Disadvantage: Too conservative. In a sense, using the Bonferroni correction, we are more likely not to state any difference between the control and any other variation.
 
+code: https://towardsdatascience.com/an-overview-of-the-multiple-comparison-problem-166aa5fcaac5 
 #### Fisher's meta analysis
 Fisher ’ s method (or any other meta-analysis technique) is great for increasing power and reducing false-positives. You may have an experiment that is underpowered even after applying all power-increasing techniques, such as maximum power traffic allocation (see Chapter 15 ) and variance reduction (see Chapter 22 ). In this case, you can consider two or more (orthogonal) replications of the same experiment (one after another) and achieve higher power by combining the results using Fisher ’ s method. 
 
