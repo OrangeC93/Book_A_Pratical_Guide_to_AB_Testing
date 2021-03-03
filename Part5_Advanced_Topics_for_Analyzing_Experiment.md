@@ -66,3 +66,41 @@ code: https://towardsdatascience.com/an-overview-of-the-multiple-comparison-prob
 #### Fisher's meta analysis
 Fisher ’ s method (or any other meta-analysis technique) is great for increasing power and reducing false-positives. You may have an experiment that is underpowered even after applying all power-increasing techniques, such as maximum power traffic allocation (see Chapter 15 ) and variance reduction (see Chapter 22 ). In this case, you can consider two or more (orthogonal) replications of the same experiment (one after another) and achieve higher power by combining the results using Fisher ’ s method. 
 
+## Variance Estimation and Improved Sensitivity: Pitfalls and Solutions
+#### Delta vs Delta %
+It is very common to use the relative difference instead of the absolute difference when reporting results from an experiment. 
+![image](/img/pert_delta.png)
+
+#### Ratio Metrics When analysis unit is different from experiment unit
+Many important metrics come from the ratio of two metrics. For example, click-through rate (CTR) is usually defined as the ratio of total clicks to total pageviews; revenue-per-click is defined as the ratio of total revenue to total clicks. Unlike metrics such as clicks-per-user or revenue-per-user。
+
+The variance formula assumption is satisfied if the analysis unit is the same as the experimental (randomization) unit. It is usually violated otherwise. 
+- For user-level metrics , each Yi represents the measurement for a user. The analysis unit matches the experiment unit and hence the assumption is valid. 
+- However, for page-level metrics, each Yi represents a measurement for a page while the experiment is randomized by user, so Y1 , Y2  and Y3 could all be from the same user and are “ correlated. ” Because of such “ within user correlation, ” variance computed using the simple formula would be biased. 
+
+
+Note that there are metrics that cannot be written in the form of the ratio of two user-level metrics, for example, 90th percentile of page load time. For these metrics, we may need to resort to bootstrap method (Efron and Tibshriani 1994 ) where you simulate randomization by sampling with replacement and estimate the variance from many repeated simulations. 
+
+#### Outliers
+
+It is critical to remove outliers when estimating variance. A practical and effective method is to simply cap observations at a reasonable threshold. For example, human users are unlikely to perform a search over 500 times or have over 1,000 pageviews in one day. There are many other outlier removal techniques as well 
+
+#### Improving sensitivity
+The ability of detecting the Treatment effect when it exists is generally referred to as power or sensitivity. One way to improve sensitivity is reducing variance. Here are some of the many ways to achieve a smaller variance: 
+- Create an evaluation metric with a smaller variance while capturing similar information. 
+  - Purchase amount (real valued) has higher variance than purchase (Boolean). Kohavi et al. ( 2009 ) gives a concrete example where using conversion rate instead of purchasing spend reduced the sample size needed by a factor of 3.3. 
+- Transform a metric through capping , binarization , or log transformation . 
+  - For example, instead of using average streaming hour, Netflix uses binary metrics to indicate whether the user streamed more than x hours in a specified time period. 
+  - For heavy long-tailed metrics, consider log transformation, especially if interpretability is not a concern, like revenue metric.
+- Use triggered analysis. This is a great way to remove noise introduced by people not affected by the Treatment. 
+- Use stratification , Control-variates or CUPED. 
+  - In stratification, you divide the sampling region into strata, sample within each stratum separately, and then combine results from individual strata for the overall estimate, which usually has smaller variance than estimating without stratification. The common strata include platforms (desktop and mobile), browser types (Chrome, Firefox and Edge) and day of week and so on. 
+  - While stratification is most commonly conducted during the sampling phase (at runtime), it is usually expensive to implement at large scale. Therefore, most applications use post-stratification, which applies stratification retrospectively during the analysis phase. When the sample size is large, this performs like stratified sampling, though it may not reduce variance as well if the sample size is small and variability among samples is big. Control-variates is based on a similar idea, but it uses covariates as regression variables instead of using them to construct the strata. 
+- Randomize at a more granular unit. 
+  - For example, if you care about the page load time metric, you can substantially increase sample size by randomizing per page. Note that there are disadvantages with a randomization unit smaller than a user:  If the experiment is about making a noticeable change to the UI, giving the same user inconsistent UIs makes it a bad user experience. 
+- Design a paired experiment. 
+  - **Pool Control groups**. If you have several experiments splitting traffic and each has their own Control, consider pooling the separate controls to form a larger, shared Control group. Comparing each Treatment with this shared Control group increases the power for all experiments involved. If you know the sizes of all Treatments you ’ re comparing the Control group with, you can mathematically derive the optimal size for the shared Control. Here are considerations for implementing this in practice: 
+    - If each experiment has its own trigger condition, it may be hard to instrument them all on the same Control. 
+    - You may want to compare Treatments against each other directly. How much does statistical power matter in such comparisons relative to testing against the Control? 
+    - There are benefits of having the same sized Treatment and Control in the comparison, even though the pooled Control is more than likely bigger than the Treatment groups. Balanced variants lead to a faster normality convergence (see Chapter 17 ) and less potential concern about cache sizes (depending on how you cache implementation). 
+
