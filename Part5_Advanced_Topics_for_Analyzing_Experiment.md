@@ -38,15 +38,13 @@ Sample size & Power
 Misinterpretation of Power
 Many people consider power an absolute property of a test and forget that it is relative to the size of the effect you want to detect. An experiment that has enough power to detect a 10% difference does not necessarily have enough power to detect a 1% difference. 
 
-
-
-
 #### Bias (chapter3)
 
 #### Multiple Testing
 - https://zhuanlan.zhihu.com/p/45715632
 - https://www.invespcro.com/blog/multiple-testing-problem-how-adding-more-variations-to-your-ab-test-will-impact-your-results/
 - http://home.uchicago.edu/amshaikh/webfiles/palgrave.pdf
+
 Multiple testing refers to any instance that involves the simultaneous testing of several hypotheses. This scenario is quite common in much of empirical research in economics. Some examples include: 
 - one fits a multiple regression model and wishes to decide which coefficients are different from zero; 
 - one compares several forecasting strategies to a benchmark and wishes to decide which strategies are outperforming the benchmark;
