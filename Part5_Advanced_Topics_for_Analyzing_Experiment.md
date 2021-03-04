@@ -173,4 +173,24 @@ The key observation is that if the new model overlaps the old model for most use
 
 
 
+#### Optimal and Conservative Triggering 
+If there are multiple Treatments, ideally information representing all variants is logged, the actual plus all counterfactuals. This then allows for optimal triggering of users who were impacted. However, multiple Treatments can present significant cost as multiple models must be executed to generate the counterfactuals. 
+
+In practice, it is sometimes easier to do a non-optimal but conservative triggering, such as including more users than is optimal. This does not invalidate the analysis, but rather loses statistical power. If the conservative trigger does not identify many more users than the ideal trigger, the simplicity tradeoff may be worthwhile. Here are some examples: 
+- Multiple Treatments. Any difference between the variants triggers the user into the analysis. Instead of logging the output of each variant, just log a Boolean to indicate that they differed. It is possible that the behavior for Control and Treatment1 was identical for some users but differed for Treatment2. So, when comparing just Control and Treatment1, include users with a known zero Treatment effect. 
+- Post-hoc analysis. Suppose the experiment was run and there was something wrong with counterfactual logging, perhaps the recommendation model used during checkout did not properly log counterfactuals. You can use a trigger condition such as “ user-initiated checkout. ” While it identifies more users than those for which the recommendation model at checkout differed, it may still remove the 90% of users who never initiated checkout, thus had zero Treatment effect. 
+
+#### Overall Treatment Effect 
+
+When computing the Treatment effect on the triggered population, you must dilute the effect to the overall user base, sometimes called diluted impact or side-wide impact.
+- If the change was made to the checkout process, the triggered users were those who initiated checkout. If the only way to generate revenue is to initiate checkout, then you improved both triggered and overall revenue by 3% and there is no need to dilute that percentage. 
+- If the change was made to very low spenders who spend 10% of the average user, then you improved revenue by 3% for 10% of users who spend 10%, so you improved revenue by 3% of 10% of 10% = 0.03%, a negligible improvement. 
+- To dilute ratio metrics, more refined formulas need to be used (Deng and Hu 2015 ). Note that ratio metrics can cause Simpson ’ s paradox (see Chapter 3 ), where the ratio in the triggered population improves, but the diluted global impact regresses. 
+
+#### Trustworthy Triggering
+There are two checks you should do to ensure a trustworthy use of triggering. We have found these to be highly valuable and they regularly point to issues. - Sample Ratio Mismatch (SRM; see Chapter 3 ). If the overall experiment has no SRM, but the triggered analysis shows an SRM, then there is some bias being introduced. Usually, the counterfactual triggering is not done properly. 
+- Complement analysis. Generate a scorecard for never triggered users, and you should get an A/A scorecard (see Chapter 19 ). If more than the expected metrics are statistically significant, then there is a good chance your trigger condition is incorrect; you influenced users not included in the trigger condition. 
+
+#### Common Pitfalls
+
 
