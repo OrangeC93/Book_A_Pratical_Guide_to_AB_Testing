@@ -148,3 +148,29 @@ Because you are not really making a change to your product and the two variants 
 3. The distribution has a few point masses with large gaps. This happens when the data is single-valued (e.g., 0) with a few rare instances of non-zero values. The delta of the means can only take a few discrete values in such scenarios, and hence the p-value can only take a few values. Here again, the t-test is not accurate, but this is not as serious as the prior scenario, because if a new Treatment causes the rare event to happen often, the Treatment effect will be large and statistically
 
 ## Triggering for Improved Sensitivity 
+Triggering provides experimenters with a way to improve sensitivity (statistical power) by filtering out noise created by users who could not have been impacted by the experiment. 
+
+#### Example 1: Intentional Partial Exposure 
+Suppose you are making a change and running the experiment on a segment of the population: only users from the US. You should only analyze users from the US. Note that you must include “ mixed ” users, those from both the United States and other countries, in the analysis if they could have seen the change. 
+
+#### Example 2: Conditional Exposure
+Suppose the change is to users who reach a portion of your website, such as checkout, or users who use a feature, like plotting a graph in Excel, then only analyze those users. In these examples, as soon as the user was exposed to a change, they triggered into the experiment because there was some difference. Conditional exposure is a very common triggering scenario; here are some additional examples: 
+1. A change to checkout: only trigger users who started checkout. 
+2. A change to collaboration, such as co-editing a document in Microsoft Word or Google Docs: only trigger users participating in collaboration. 
+3. A change to the unsubscribe screen(s): only trigger users that see these changes. 
+4. A change to the way the weather answer displays on a search engine results page: only trigger users who issue a query resulting in a weather answer. 
+
+#### Example 3: Coverage Increase
+Suppose that your site is offering free shipping to users with more than $35 in their shopping cart and you are testing a lower threshold of $25. A key observation is that the change only impacts users who at some point started checkout with a shopping cart between $25 and $35. Users with shopping carts over $35 and those with shopping carts under $25 have the same behavior in Treatment as Control. Only trigger users who see the free shipping offer when they have $25 to $35 in their shopping cart. For this example, we assume that no “ advertisement ” of the free shipping promotion is on the site; if at some point free shipping displays for the user and it is different between Control and Treatment, that immediately becomes a trigger point. 
+
+#### Example 4: Coverage Change
+Things become a bit more complicated when the coverage isn't increased For example, suppose Control offers free shipping to shoppers with at least $35 in their cart but Treatment offers free shipping to users with at least $25 in their cart except if they returned an item within 60 days before the experiment started. 
+
+#### Example 5: Counterfactual Triggering for Machine Learning Models 
+Suppose you have a machine learning classifier that classifies users into one of three promotions or a recommender model that recommends related products to the one shown on the page. You trained the new classifier or recommender model, and V2 did well in your offline tests. Now you expose to see if it improves your OEC (see Chapter 7 ). 
+
+The key observation is that if the new model overlaps the old model for most users, as when making the same classifications or recommendations for the same inputs, then the Treatment effect is zero for those users. How would you know? You must generate the counterfactual. The Control would run both the model for Control and Treatment and expose users to the Control while logging the Control and Treatment (counterfactual) output; the Treatment would run both the model for Control and Treatment and expose users to the Treatment while logging the output of both models. Users are triggered if the actual and counterfactual differ. 
+
+
+
+
