@@ -233,6 +233,45 @@ Scorecard from Bing. The left column shows the meta-data, or metric names. The c
 - The middle columns shows small pvalue but the right column represents slightly over 96% of users; the excluded users were those that used an old version of the Chrome browser, which was the cause of the SRM. Also, a bot was not properly classified due to some changes in the Treatment, causing an SRM. Without the segment, the remaining 96% of users are properly balanced, and the metrics show no statistically significant movement in the five success metrics. 
 
 #### SRM Causes
+- Buggy randomization of users. While simple Bernoulli randomization of users based on the percentages that get assigned to Control and Treatment is easy to imagine, things get more complex in practice because of ramp-up procedures(e.g., starting an experiment at 1%, and ramping up to 50%), exclusions (users in experiment X should not be in experiment Y), and attempts to balance covariates by looking at historical data.
+- Data pipeline issues, such as the bot filtering mentioned in Scenario 2 above. 
+- Residual effects. Experiments are sometimes restarted after fixing a bug. When the experiment is visible to users, there is a desire not to re-randomize the users, so the analysis start date is set to the point after introducing the bug fix. If the bug was serious enough for users to abandon, then there will be an SRM.
+- Bad trigger condition. The trigger condition should include any user that could have been impacted. A common example is a redirect: website A redirects a percentage of users to website A ꞌ , their new website being built and tested. Because the redirect generates some loss, there will be typically be an SRM if only users that make it to website A ꞌ ; are assumed to be in the Treatment. 
+- Triggering based on attributes impacted by the experiment. For example, suppose you are running a campaign on dormant users based on a dormant attribute stored in the user profile database. If the Treatment is effective enough to make some dormant users more active, then identifying users based on this attribute at the end of the experiment will give an SRM: The users that were dormant early and are now active will be excluded by the trigger condition. The analysis should be triggered to the state of the dormant attribute before the experiment started (or before each user was assigned). 
+
+## Debugging SRMs
+- Validate that there is no difference upstream of the randomization point or trigger point.
+  - If you ’ re evaluating 50% off vs. two-for-one at the checkout point, you cannot mention any of these options on the homepage; if you do, you must analyze users starting from the homepage. 
+- Validate that variant assignment is correct. Are users properly randomized at the top of the data pipeline? 
+  - For example, suppose one experiment changes the font color from black to dark blue and a concurrent experiment starts that changes the background color, but that experiment filters to users who have their font set to black. Due to the way the code is run, the second experiment “ steals ” users from the first, but only from the font-set-to-black variant. Of course, this causes an SRM. 
+Kohavi, Ron,Tang, Diane,Xu, Ya. Trustworthy Online Controlled Experiments (p. 223). Cambridge University Press. Kindle Edition. 
+- Follow the stages of the data processing pipeline to see whether any cause an SRM. For example, a very common source of SRMs is bot filtering. 
+- Exclude the initial period. Is it possible that both variants did not start together? 
+  - Exclude the initial period. Is it possible that both variants did not start together? In 
+- Look at the Sample Ratio for segments. 
+- Look at the intersection with other experiments. Treatment and Control should have similar percentages of variants from other experiments. 
+
+#### Ohter Trust related guardrial metrics
+- Telemetry fidelity
+- Cache hit rate
+- Cookie write rate
+- Quick queires are two or more search queries that arrive from the same user to a search engine within one second of each other
+
+## Leakage and Interference between variants
+We define interference as a violation of SUTVA, sometimes called spillover or leakage between the variants. 
+
+There're two ways interference may arise: direct (social network)or indirect connection(treatment and control shared same ad campaign budget).
+- Direct connections
+  - Facebook/Linkedin
+  - Skype call
+- Indirect connections
+  - Airbnb: If the AirBnB marketplace site of homes for rent improved conversion flow for Treatment users, resulting in more booking, it would naturally lead to less inventory for Control users. 
+  - Uber: surge price lead the price goes up for both treatment adn control group.
+  - eBay: bidding encouragement will lead to the overestimate of delta of the total number of transaction between Treatment and Control
+  - Ad Campaign: Consider an experiment that shows users different rankings for the same ads. If the Treatment encourages more clicks on the ads, it uses up campaign budget faster. 
+ - Relevance Model Training:Imagine a search engine that uses a simple click-based relevance model for ranking. If we use data collected from all users to train both Treatment and Control models, the longer the experiment runs, the more the “ good ” clicks from Treatment benefit Control. 
+- CPU: We have experienced examples where a bug in Treatment unexpectedly held up CPUs and memory on the machines, and as a result, requests from both Treatment and Control took longer to process. 
+- Sub-user experiment unit: Experiment units smaller than a user, such as a pageview, can cause potential leakage among units from the same user if there is a strong learning effect from the Treatment. 
 
 
 
@@ -240,6 +279,7 @@ Scorecard from Bing. The left column shows the meta-data, or metric names. The c
 
 
 
+ 
 
 
  
