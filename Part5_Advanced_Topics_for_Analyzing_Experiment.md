@@ -192,5 +192,54 @@ There are two checks you should do to ensure a trustworthy use of triggering. We
 - Complement analysis. Generate a scorecard for never triggered users, and you should get an A/A scorecard (see Chapter 19 ). If more than the expected metrics are statistically significant, then there is a good chance your trigger condition is incorrect; you influenced users not included in the trigger condition. 
 
 #### Common Pitfalls
+Pitfall 1: Experimenting on Tiny Segments That Are Hard to Generalize 
+- There is one important exception to this rule, which is generalizations of a small idea. For example, in Aug 2008, MSN UK ran an experiment whereby the link to Hotmail opened in a new tab, as measured by clicks/user on the homepage, by 8.9% for the triggered users who clicked the Hotmail link 
+
+Pitfall2: A Triggered User Is Not Properly Triggered for the Remaining Experiment Duration 
+- For example, assume that the Treatment provides such a terrible experience that users significantly reduce visits. If you analyze users by day or by session, you will underestimate the Treatment effect. If visits-per-user has not significantly changed statistically, you can get statistical power by looking at triggered visits. 
+
+Pitfall 3: Performance Impact of Counterfactual Logging 
+To log the counterfactual, both Control and Treatment will execute each other ’ s code (e.g., model). If the model for one variant is significantly slower than the other, this will not be visible in the controlled experiment. These two things can help: 
+1. Awareness of this issue. The code can log the timing for each model so that they can be directly compared. 
+2. Run an A/A ꞌ /B experiment, where A is the original system (Control), A ꞌ is the original system with counterfactual logging, and B is the new Treatment with counterfactual logging. If A and A ꞌ are significantly different, you can raise an alert that counterfactual logging is making an impact. 
+
+It is worth noting that counterfactual logging makes it very hard to use shared controls (see Chapter 12 and Chapter 18 ), as those shared controls are typically running without code changes. In 
+
+#### Open questions
+Question 1: Triggering Unit 
 
 
+Question 2: Plotting Metrics over Time 
+- Plotting a metric over time with increasing numbers of users usually leads to false trends (Kohavi et al. 2012 , Chen, Liu and Xu 2019 ). It ’ s best to look at graphs over time where each day shows the user who visited that day. 
+- The key issue is that the overall Treatment effect must include all days, so the single-day and overall (or cross-day) numbers do not match. 
+
+## Sample Ratio Mismatch and other Trust Related Guardrail Metrics
+Guardrail metrics are critical metrics designed to alert experimenters about violated assumptions. There are two types of guardrail metrics: **organizational and trust-related**. Chapter 7 discusses organizational guardrails that are used to protect the business, and this chapter describes the Sample Ratio Mismatch (SRM) in detail, which is a trust-related guardrail. 
+
+#### Sample ratio mismatch
+The Sample Ratio Mismatch (SRM) metric looks at the ratio of users (or other units) between two variants, usually a Treatment and the Control. If the experiment design calls for exposing a certain ratio of users (say 1:1) to the two variants, then the results should closely match the design. 
+
+When the p-value for the Sample Ratio metric is low, that is, the probability of observing such a ratio or more extreme conditioned on the design ratio, there is a sample ratio mismatch (SRM), and all other metrics are probably invalid. You can use a standard t-test or chi-squared test to compute the p-value. 
+
+#### Scenario 1
+- Control: 821,588 users 
+- Treatment: 815,482 users 
+- The ratio between the two is 0.993 whereas, per design, the ratio should be 1.0. The p-value of the above .993 Sample Ratio is 1.8E-6, so You just observed an extremely unlikely event. It is therefore more likely that there is a bug in the implementation of the experiment
+
+
+#### Scenario 2
+![image](/img/bing_scoreboard.png)
+Scorecard from Bing. The left column shows the meta-data, or metric names. The center column shows the statistics for each metric for the overall experiment. The right column shows the statistics for each metric for a segment of the population.
+- The middle columns shows small pvalue but the right column represents slightly over 96% of users; the excluded users were those that used an old version of the Chrome browser, which was the cause of the SRM. Also, a bot was not properly classified due to some changes in the Treatment, causing an SRM. Without the segment, the remaining 96% of users are properly balanced, and the metrics show no statistically significant movement in the five success metrics. 
+
+#### SRM Causes
+
+
+
+
+
+
+
+
+
+ 
