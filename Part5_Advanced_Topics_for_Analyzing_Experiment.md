@@ -273,6 +273,21 @@ There're two ways interference may arise: direct (social network)or indirect con
 - CPU: We have experienced examples where a bug in Treatment unexpectedly held up CPUs and memory on the machines, and as a result, requests from both Treatment and Control took longer to process. 
 - Sub-user experiment unit: Experiment units smaller than a user, such as a pageview, can cause potential leakage among units from the same user if there is a strong learning effect from the Treatment. 
 
+#### Rule of Thumb： Ecosystem value of an Action
+Identify actions that can potentially spill over, and only have concern about interference if these actions are materially impacted in an experiment. This usually means not only the first-order action, but also the potential responses to actions. For example: 
+- Total number of messages sent, and messages responded to 
+
+Once you identify metrics indicative of a downstream impact, you can establish general guidance for how each action. For example, how much does a message from user A translate to visit sessions from both A and their neighbors? 
+- One approach for establishing this rule-of-thumb is using historical experiments shown to have downstream impact and extrapolating this impact to the downstream impact of actions X/Y/Z using the Instrumental Variable approach 
+
+The approach does have limitations, rule-of-thumb is only an approximation and may not work for all scenarios. 
+- For example, additional messages resulting from a certain Treatment may have an ecosystem impact larger than average. 
+
+#### Isolation
+- 
+
+
+
 
 
 
