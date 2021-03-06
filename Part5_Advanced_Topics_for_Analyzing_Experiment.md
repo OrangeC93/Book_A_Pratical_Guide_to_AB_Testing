@@ -284,7 +284,32 @@ The approach does have limitations, rule-of-thumb is only an approximation and m
 - For example, additional messages resulting from a certain Treatment may have an ecosystem impact larger than average. 
 
 #### Isolation
-- 
+- Splitting shared resources: There are two things to watch out for when applying this approach: 
+  -  Can your interfering resources be split exactly according to the traffic allocation for your variants
+  -  Does your traffic allocation(the resouce split size) introduce bias
+- Geo-based randomization: Randomize at the region level to isolate the interference between Treatment and Control 
+  - Caveat: randomizing at the geo level limits the sample size by the number of available geo locations. This leads to a bigger variance and less power for A/B tests. See Chapter 18 for discussions on reducing variance and achieving better power
+- Time-basedd randomization:
+At any time t, you could flip a coin and decide whether to give all users Treatment or all users Control. above). The time unit can be short (seconds) or long (weeks), depending on what is practical and how many sample points you need. 
+  - One thing to keep in mind is that there is usually strong temporal variation, like the day-of-week or hour-of-day effects. This usually helps reduce variance by utilizing this information in paired **t-tests** or **covariate adjustments**.(Chapter 18) for more details. A similar technique called **interrupted time series (ITS)**(Chapter 11). 
+- Network cluster randomization: Similar to geo-based randomization, on social networks, we construct “ clusters ” of nodes that are close to each other based on their likelihood to interfere. We use each cluster as “ mega ” units and randomize them independently into Treatment or Control groups 
+  - It's rare to have perfect isolation in practice: For example, when attempting to create 10,000 isolated and balanced clusters from the entire LinkedIn graph, there were still more than 80% of the connections between clusters.
+  - Like other mega-unit randomization approaches, the effective sample size (number of clusters) is usually small, which leads to a variance-bias tradeoff when we built the clusters. The larger number of clusters leads to a smaller variance, but also gave us a larger bias with less isolation. 
+- Network ego centric randomziation
+
+
+Whenever applicable, always combine isolation methods to get a larger sample size. For 
+
+
+#### Edge level analysis
+Use Bernoulli randomization on users and then label the edges based on the experiment assignment of the users (nodes) as one of these four types: Treatment-to-Treatment, Treatment-to-Control, Control-to-Control, and Control-to-Treatment. Contrasting interactions (e.g., messages, likes) that happen on different edges, allows you to understand important network effects. 
+- For example, use the contrast between the Treatment-to-Treatment and Control-to-Control edges to estimate unbiased delta, or identify whether units in Treatment prefer to message other Treatment units over Control units (Treatment affinity), and whether new actions created by Treatment get a higher response rate. 
+
+
+
+## Measuring Long-Term Treatment
+
+
 
 
 
