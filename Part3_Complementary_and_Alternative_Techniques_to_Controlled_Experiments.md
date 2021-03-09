@@ -63,10 +63,12 @@ In observational causal studies, the challenges are:
 - How to model the impact given those Control and Treatment groups. 
 
 #### Interrupted Time Series
-Interrupted Time Series (ITS) is a quasi-experimental design, where you can control the change within your system, but you cannot randomize the Treatment to have a proper Control and Treatment. Instead, you use the same population for Control and Treatment, and you vary what the population experiences over time. 
+Interrupted Time Series (ITS) is a quasi-experimental design, where you use the same population for Control and Treatment, and you vary what the population experiences over time. For example, the effect of police helicopter surveillance on home burglaries was estimated using multiple Treatment interventions In an online setting, a similar example is to understand the impact of online advertising on search-related site visits. 
 ![image](/img/its.png)
 
-Issues: (1)Time-based effects as the comparisons are made across different points of time,like seasonality, other underlying system changes, Changing back and forth multiple times will help reduce the likelihood of that (2) User experience
+Note that sophisticated modeling may be necessary to infer the impact, with an online example of ITS being Bayesian Structural Time Series analysis 
+
+Issues: (1) Time-based effects as the comparisons are made across different points of time,like seasonality, other underlying system changes, Changing back and forth multiple times will help reduce the likelihood of that (2) User experience
 
 #### Interleaved Experiments
 Interleaved experiment design is a common design used to evaluate ranking algorithm changes, such as in search engines or search at a website . In an interleaved experiment, you have two ranking algorithms, X and Y. Algorithm X would show results x 1 , x 2 , … x n in that order, and algorithm Y would show y 1 , y 2 , … y n . An interleaved experiment would intersperse results mixed together, e.g. x 1 , y 1 , x 2 , y 2 , … x n , y n with duplicate results removed. 
@@ -83,6 +85,10 @@ Instrumental Variables (IV) is a technique that tries to approximate random assi
 
 #### Propensity Score Matching
 Another class of approaches here is to construct comparable Control and Treatment populations, often by segmenting the users by common confounds, in something akin to stratified sampling. The idea is to ensure that the comparison between Control and Treatment population is not due to population mix changes. For example, if we are examining an exogenous change of the impact of users changing from Windows to iOS, we want to ensure that we are not measuring a demographic difference in the population. 
+
+The key concern about PSM is that only observed covariates are accounted for; unaccounted factors may result in hidden biases. 
+
+
 
 #### [Difference in Differences](https://www.eddjberry.com/post/adjustment-in-a-b-testing/)
 Geographically based experiments commonly use this technique. 
