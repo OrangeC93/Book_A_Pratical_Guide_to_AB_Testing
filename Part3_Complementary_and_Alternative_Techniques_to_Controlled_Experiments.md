@@ -40,6 +40,13 @@ External data is data relevant to you and what you are looking at that a party e
 
 
 ## Observational Causal Study
+The “ basic identity of causal inference ” (Varian 2016 ) is:
+
+```Outcome for treated - Outcome for untreated = Impact of Treatment on treated + Selection bias```
+
+Controlled experiments are the gold standard for assessing causality because, with random assignment of units to variants, the first term is the observed difference between Treatment and Control and the second term has an expected value of zero. 
+
+However...
 #### When Controlled Experiments Are Not Possible
 - Not under the control of organization, user behaviour when they change their phone
 - Two few units, M&A senario
@@ -48,7 +55,13 @@ External data is data relevant to you and what you are looking at that a party e
 - Cannot be properly randomized, when assessing the  value of TV ads
 - Unethical or illegal, withholding medical treatment that are believed to be beneficial
 
+Under the above situation, we could user other methods, including small scale user experience studies, surveys, and observational studies which we call observational causal studies, the goal is to get as close to a causal result as possible, while the general data analysis have different goals, ranging from summarizing, prediction, analyzing metrics etc.
+
 ## Designs for Observational Causal Studies
+In observational causal studies, the challenges are: 
+- How to construct Control and Treatment groups for comparison. 
+- How to model the impact given those Control and Treatment groups. 
+
 #### Interrupted Time Series
 Interrupted Time Series (ITS) is a quasi-experimental design, where you can control the change within your system, but you cannot randomize the Treatment to have a proper Control and Treatment. Instead, you use the same population for Control and Treatment, and you vary what the population experiences over time. 
 ![image](/img/its.png)
