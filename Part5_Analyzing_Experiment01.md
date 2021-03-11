@@ -160,7 +160,7 @@ Because you are not really making a change to your product and the two variants 
 2. There is a large mass around p-value of 0.32, indicating a problem with outliers. 
 3. The distribution has a few point masses with large gaps. This happens when the data is single-valued (e.g., 0) with a few rare instances of non-zero values. The delta of the means can only take a few discrete values in such scenarios, and hence the p-value can only take a few values. Here again, the t-test is not accurate, but this is not as serious as the prior scenario, because if a new Treatment causes the rare event to happen often, the Treatment effect will be large and statistically
 
-## Triggering for Improved Sensitivity 
+## 20. Triggering for Improved Sensitivity 
 Triggering provides experimenters with a way to improve sensitivity (statistical power) by filtering out noise created by users who could not have been impacted by the experiment. 
 
 #### Example 1: Intentional Partial Exposure 
