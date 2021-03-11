@@ -1,4 +1,4 @@
-## The Statistics behind Online Controlled Experiments
+## 17. The Statistics behind Online Controlled Experiments
 #### Two sample t test
 #### p value and confidence interval
 One way: **P value**, if there really is no difference between Treatment and Control, the probabiity that t would be at least this extreme.
@@ -73,7 +73,7 @@ code: https://towardsdatascience.com/an-overview-of-the-multiple-comparison-prob
 #### Fisher's meta analysis
 Fisher ’ s method (or any other meta-analysis technique) is great for increasing power and reducing false-positives. You may have an experiment that is underpowered even after applying all power-increasing techniques, such as maximum power traffic allocation (see Chapter 15 ) and variance reduction (see Chapter 22 ). In this case, you can consider two or more (orthogonal) replications of the same experiment (one after another) and achieve higher power by combining the results using Fisher ’ s method. 
 
-## Variance Estimation and Improved Sensitivity: Pitfalls and Solutions
+## 18. Variance Estimation and Improved Sensitivity: Pitfalls and Solutions
 #### Delta vs Delta %
 It is very common to use the relative difference instead of the absolute difference when reporting results from an experiment. 
 ![image](/img/pert_delta.png)
@@ -116,7 +116,7 @@ When it comes to time-based metrics, such as page-load-time (PLT), it is common 
 
 There is another layer of complication. Most time-based metrics are at the event/page level, while the experiment is randomized at user level. In this case, apply a combination of density estimation and the delta method 
 
-## A/A Test
+## 19. A/A Test
 #### Why A/A Tests?
 - Ensure that Type I errors are controlled (e.g., at 5%) as expected. 
 - Assessing metrics ’ variability. 
