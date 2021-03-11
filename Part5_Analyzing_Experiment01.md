@@ -15,8 +15,9 @@ Another way: check whether the **confidence interval** overlaps with zero.
 #### Normality Assumption
 Many people consider **the sample distribution of the metric Y** is a poor assumption because almost none of the metrics used in practice follow a normal distribution. However, **the average Y** usually does because of the Central Limit Theorem. As the sample size increases, the distribution of the mean Y becomes more normally distributed. 
 
-One rule-of-thumb for the minimum number of samples needed for the average Y to have normal distribution is 355 s^2 for each variant: s is the skewness coefficient of the sample distribution of the metric Y defined as below
+Skewness and Normadistribution and Sample size:
 
+One rule-of-thumb for the minimum number of samples needed for the average Y to have normal distribution is 355 s^2 for each variant: s is the [skewness coefficient](https://www.itl.nist.gov/div898/handbook/eda/section3/eda35b.htm) of the sample distribution of the metric Y defined as below
 ![image](/img/skewness.png)
 
 - Some metrics, especially revenue metrics, tend to have a high skewness coefficient. One effective way to reduce skewness is to **transform the metric** or **cap the values**. 
@@ -28,13 +29,14 @@ One rule-of-thumb for the minimum number of samples needed for the average Y to
   - You can randomly shuffle samples across Treatment and Control to generate the null distribution and compare that distribution with the normal curve using statistical tests such as Kolmogorov – Smirnov and Anderson-Darling 
 
 #### Type I/II Erros and Power
-A Type I error  when we conclude that there is **a significant difference** between Treatment and Control when there is **no real difference**. 
-
-A Type II error is when we conclude that there is **no significant difference** when there **really is one**. 
+Type I and Type II: 
+- A Type I error  when we conclude that there is **a significant difference** between Treatment and Control when there is **no real difference** (假的说成真的，因此很多真的混杂着假的).
+- A Type II error is when we conclude that there is **no significant difference** when there **really is one**(真的说成假的，因此很多错过很多真的).
+- TRradeoff between these two errors: using a higher p-value threshold means a higher Type I error rate （可能会很多假的说成真的）but a smaller chance of missing a real difference（但是不会错过一个真的）, therefore a lower Type II error rate. 
 
 Power is the probability of detecting a difference between the variants: rejecting the null, when there really is a difference.
+- Misinterpretation of Power: Many people consider power an absolute property of a test and forget that it is relative to the size of the effect you want to detect. An experiment that has enough power to detect a 10% difference does not necessarily have enough power to detect a 1% difference. 
 
-Clearly, there is a tradeoff between these two errors. Using a higher p-value threshold means a higher Type I error rate but a smaller chance of missing a real difference, therefore a lower Type II error rate. 
 
 Challenge:
 - For online experiments, sample size estimation is more complex because online users visit over time, so the duration of the experiment also plays a role in the actual sample size of an experiment. Depending on the randomization unit, the sample variance σ^2 can also change over time. 
@@ -44,10 +46,10 @@ Sample size & Power
 ![image](/img/sample_size_mean.png)
 ![image](/img/sample_size_proportion.png)
 
-Misinterpretation of Power
-- Many people consider power an absolute property of a test and forget that it is relative to the size of the effect you want to detect. An experiment that has enough power to detect a 10% difference does not necessarily have enough power to detect a 1% difference. 
 
 #### Bias (chapter3)
+Bias arises when the estimate and the true value of the mean are systematically different. It can be caused by a platform bug, a flawed experiment design, or an unrepresentative sample such as company employee or test accounts. We discuss several examples and recommendations for prevention and detection in Chapter 3
+
 
 #### Multiple Testing
 - https://zhuanlan.zhihu.com/p/45715632
@@ -55,13 +57,15 @@ Misinterpretation of Power
 - http://home.uchicago.edu/amshaikh/webfiles/palgrave.pdf
 
 Multiple testing refers to any instance that involves the simultaneous testing of several hypotheses. This scenario is quite common in much of empirical research in economics. Some examples include: 
-- one fits a multiple regression model and wishes to decide which coefficients are different from zero; 
-- one compares several forecasting strategies to a benchmark and wishes to decide which strategies are outperforming the benchmark;
-- one evaluatesa program with respect to multiple outcomes and wishes to decide for which outcomes the program yields significant effects
+- One fits a multiple regression model and wishes to decide which coefficients are different from zero
+- One compares several forecasting strategies to a benchmark and wishes to decide which strategies are outperforming the benchmark
+- One evaluates a program with respect to multiple outcomes and wishes to decide for which outcomes the program yields significant effects
 
-If one does not take the multiplicity of tests into account, then the probability that some of the true null hypotheses are rejected by chance alone may be unduly large. Take the case of S = 100 hypotheses being tested at the same time, all of them being true, with the size and level of each test exactly equal to α. For α = 0.05, one expects five true hypotheses to be rejected. Further, if all tests are mutually independent, then the probability that at least one
-true null hypothesis will be rejected is given by 1 − 1-0.05^100 = 0.994. The graph below illustrates how the overall type I error increases as the number of tests increases:
-![image](/img/test_error_number_of_test.png)
+If one does not take the multiplicity of tests into account, then the probability that some of the true null hypotheses are rejected by chance alone may be large. 
+- For example k=100 hypotheses being testd at the same time, a = 0.05, one expects five true hypotheses to be rejected, if all tests mutually independent, then the probability that at least one true null hypothesis will be rejected is 1-0.95^100 = 0.994.
+
+The graph below illustrates how the overall type I error increases as the number of tests increases:
+![image](/img/type1_error_number_of_test.png)
 
 **Bonferroni and Hochberg and BHY adjustment**
 
