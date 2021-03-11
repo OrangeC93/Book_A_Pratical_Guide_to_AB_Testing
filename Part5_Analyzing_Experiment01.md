@@ -62,18 +62,21 @@ Multiple testing refers to any instance that involves the simultaneous testing o
 - One evaluates a program with respect to multiple outcomes and wishes to decide for which outcomes the program yields significant effects
 
 If one does not take the multiplicity of tests into account, then the probability that some of the true null hypotheses are rejected by chance alone may be large. 
-- For example k=100 hypotheses being testd at the same time, a = 0.05, one expects five true hypotheses to be rejected, if all tests mutually independent, then the probability that at least one true null hypothesis will be rejected is 1-0.95^100 = 0.994.
-
-The graph below illustrates how the overall type I error increases as the number of tests increases:
+- For example k=100 hypotheses being testd at the same time, a = 0.05, one expects five true hypotheses to be rejected, if all tests mutually independent, then the probability that at least one true null hypothesis will be rejected is 1-0.95^100 = 0.994. The graph below illustrates how the overall type I error increases as the number of tests increases:
 ![image](/img/type1_error_number_of_test.png)
 
-**Bonferroni and Hochberg and BHY adjustment**
-
-The simplest solution that works for a limited number of comparisons is using statistical methods correction for multiple testing, which rely on some statistical adjustments made to p-values with the goal of reducing the chances of obtaining false-positive results. 
-- Advantage: Simple. For example, the significance level for a single test would be 0.05 divided by 3 (number of variations)
-- Disadvantage: Too conservative. In a sense, using the Bonferroni correction, we are more likely not to state any difference between the control and any other variation.
-
+**Bonferroni**
+The Bonferroni correction, which rely on some statistical adjustments made to p-values with the goal of reducing the chances of obtaining false-positive results, sets the significance cut-off at α/n.
+- Advantage: Simple. 
+- Disadvantage: Too conservative, leading to a **high rate of false negative**(fails to indicate the presence of a condition when it is present). In a sense, using the Bonferroni correction, we are more likely not to state any difference between the control and any other variation.
 code: https://towardsdatascience.com/an-overview-of-the-multiple-comparison-problem-166aa5fcaac5 
+
+**The False Discovery Rate**
+FDR: the proportion of false positives among all significant result, the FDR works by estimating some rejection region so that, on average, FDR < a.
+
+**The positive False Discovery Rate**
+We try to control the probability that the null hypothesis is true, given that the test rejected the null. This method works by first fixing the rejection region, then estimating α, which is quitethe opposite of how the FDR is handled.
+
 #### Fisher's meta analysis
 Fisher ’ s method (or any other meta-analysis technique) is great for increasing power and reducing false-positives. You may have an experiment that is underpowered even after applying all power-increasing techniques, such as maximum power traffic allocation (see Chapter 15 ) and variance reduction (see Chapter 22 ). In this case, you can consider two or more (orthogonal) replications of the same experiment (one after another) and achieve higher power by combining the results using Fisher ’ s method. 
 
