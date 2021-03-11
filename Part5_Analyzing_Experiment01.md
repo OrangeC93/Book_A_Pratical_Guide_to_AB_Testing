@@ -3,10 +3,10 @@
 #### p value and confidence interval
 One way: **P value**, if there really is no difference between Treatment and Control, the probabiity that t would be at least this extreme.
 
-Common mistake for p value interpretation:
-- p-value captures the probability that the Null hypothesis is true given the data observed
-  - We could use Byes rule to break it down: As indicated in the equation, to know whether the Null hypothesis is true based on data collected (posterior probability), you not only need a p-value but also the likelihood that the Null hypothesis is true. 
-![image](/img/pvalue_bayes.png)
+- Common mistake for p value interpretation:
+  - p-value captures the probability that the Null hypothesis is true given the data observed
+    - We could use Byes rule to break it down: As indicated in the equation, to know whether the Null hypothesis is true based on data collected (posterior probability), you not only need a p-value but also the likelihood that the Null hypothesis is true. 
+  ![image](/img/pvalue_bayes.png)
 
 Another way: check whether the **confidence interval** overlaps with zero. 
 - The delta is statistically significant at 0.05 significance level : 
