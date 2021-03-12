@@ -53,6 +53,8 @@ Bias arises when the estimate and the true value of the mean are systematically 
 
 #### Multiple Testing
 - https://zhuanlan.zhihu.com/p/45715632
+- https://www.jianshu.com/p/7de733382274
+- https://www.jianshu.com/p/9e97e9b351fd
 - https://www.invespcro.com/blog/multiple-testing-problem-how-adding-more-variations-to-your-ab-test-will-impact-your-results/
 - http://home.uchicago.edu/amshaikh/webfiles/palgrave.pdf
 
