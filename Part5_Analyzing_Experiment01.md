@@ -57,27 +57,50 @@ Bias arises when the estimate and the true value of the mean are systematically 
 - https://www.jianshu.com/p/9e97e9b351fd
 - https://www.invespcro.com/blog/multiple-testing-problem-how-adding-more-variations-to-your-ab-test-will-impact-your-results/
 - http://home.uchicago.edu/amshaikh/webfiles/palgrave.pdf
+- https://towardsdatascience.com/an-overview-of-the-multiple-comparison-problem-166aa5fcaac5
 
 Multiple testing refers to any instance that involves the simultaneous testing of several hypotheses. This scenario is quite common in much of empirical research in economics. Some examples include: 
 - One fits a multiple regression model and wishes to decide which coefficients are different from zero
 - One compares several forecasting strategies to a benchmark and wishes to decide which strategies are outperforming the benchmark
 - One evaluates a program with respect to multiple outcomes and wishes to decide for which outcomes the program yields significant effects
 
-If one does not take the multiplicity of tests into account, then the probability that some of the true null hypotheses are rejected by chance alone may be large. 
-- For example k=100 hypotheses being testd at the same time, a = 0.05, one expects five true hypotheses to be rejected, if all tests mutually independent, then the probability that at least one true null hypothesis will be rejected is 1-0.95^100 = 0.994. The graph below illustrates how the overall type I error increases as the number of tests increases:
-![image](/img/type1_error_number_of_test.png)
+ 
+**FWER(family wise error rate) Methods**
+- The error rate indicates the probability of making one or more false discoveries when performing multiple hypotheses test.
+- FWER = 1 - (1 - α)^m
+- If one does not take the multiplicity of tests into account, then the probability that some of the true null hypotheses are rejected by chance alone may be large. For example k=100 hypotheses being testd at the same time, α = 0.05, one expects five true hypotheses to be rejected, if all tests mutually independent, then the probability that at least one true null hypothesis will be rejected is 1-0.95^100 = 0.994. The overall type I error increases as the number of tests increases.
+- In simpler terms, we are adjusting the α somehow to make sure the FWER ≤ α. This is to ensure that the Type I error always controlled at a significant level α. For example, when we have 20 features as independent variables for our prediction model, we want to do a significance test for all 20 features. It means all the 20 hypothesis tests are in one family.
 
-**Bonferroni**
-The Bonferroni correction, which rely on some statistical adjustments made to p-values with the goal of reducing the chances of obtaining false-positive results, sets the significance cut-off at α/n.
+
+**1. Bonferroni**
+- The Bonferroni correction, which rely on some statistical adjustments made to p-values with the goal of reducing the chances of obtaining false-positive results, sets the significance cut-off at α/n.
 - Advantage: Simple. 
 - Disadvantage: Too conservative, leading to a **high rate of false negative**(fails to indicate the presence of a condition when it is present). In a sense, using the Bonferroni correction, we are more likely not to state any difference between the control and any other variation.
-code: https://towardsdatascience.com/an-overview-of-the-multiple-comparison-problem-166aa5fcaac5 
+- code: https://towardsdatascience.com/an-overview-of-the-multiple-comparison-problem-166aa5fcaac5 
 
-**The False Discovery Rate**
-FDR: the proportion of false positives among all significant result, the FDR works by estimating some rejection region so that, on average, FDR < a.
+**2. Bonferroni-Holm correction**
+- This other method improves the method above by sorting the obtained p-values from lowest to highest and comparing them to nominal alpha levels of α/m to α
+- Disadvantage: Bonferroni Correction is proven too strict at correcting the α level where Type II error/ False Negative rate is higher than what it should be. 
+- Pk < α/(m+1-k): lowest p_value <α/m, 2nd_lowest p_value <α/(m-1), …, highest p_value <α
+- When we Fail to Reject the Null Hypothesis. When this happens, we stop at this point, and every ranking is higher than that would be Failing to Reject the Null Hypothesis.
 
-**The positive False Discovery Rate**
+**3. Šidák correction**
+- This method also defines a new α’ to reach. This threshold is defined using the FWER and the number of tests.
+- α’ = 1 - (1 - FWER)^(1/m)
+
+**4. Many others .. **
+
+**FDR Method**
+- FWER is way of adjusting α, resulting in too few hypotheses are passed the test.
+- While FWER methods control the probability for at least one Type I error, FDR methods control the expected Type I error proportion. In this way, FDR is considered to have greater power with the trade-off of the increased number Type I error rate.
+
+**1. Benjamini–Hochberg (BH) correction**
+- BH method ranks the P-value from the lowest to the highest, then Pk < k/m * α.
+- We keep repeating the equation until we stumbled into a rank where the P-value is Fail to Reject the Null Hypothesis. 
+
+**2. The positive False Discovery Rate**
 We try to control the probability that the null hypothesis is true, given that the test rejected the null. This method works by first fixing the rejection region, then estimating α, which is quitethe opposite of how the FDR is handled.
 
+**Regression Method**
 #### Fisher's meta analysis
 Fisher ’ s method (or any other meta-analysis technique) is great for increasing power and reducing false-positives. You may have an experiment that is underpowered even after applying all power-increasing techniques, such as maximum power traffic allocation (see Chapter 15 ) and variance reduction (see Chapter 22 ). In this case, you can consider two or more (orthogonal) replications of the same experiment (one after another) and achieve higher power by combining the results using Fisher ’ s method. 
