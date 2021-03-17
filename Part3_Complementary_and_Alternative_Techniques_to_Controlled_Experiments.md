@@ -62,7 +62,7 @@ In observational causal studies, the challenges are:
 - How to construct Control and Treatment groups for comparison. 
 - How to model the impact given those Control and Treatment groups. 
 
-#### Interrupted Time Series
+#### 1.Interrupted Time Series
 Interrupted Time Series (ITS) is a quasi-experimental design, where you use the same population for Control and Treatment, and you vary what the population experiences over time. For example, the effect of police helicopter surveillance on home burglaries was estimated using multiple Treatment interventions In an online setting, a similar example is to understand the impact of online advertising on search-related site visits. 
 ![image](/img/its.png)
 
@@ -70,12 +70,12 @@ Note that sophisticated modeling may be necessary to infer the impact, with an o
 
 Issues: (1) Time-based effects as the comparisons are made across different points of time,like seasonality, other underlying system changes, Changing back and forth multiple times will help reduce the likelihood of that (2) User experience
 
-#### Interleaved Experiments
+#### 2.Interleaved Experiments
 Interleaved experiment design is a common design used to evaluate ranking algorithm changes, such as in search engines or search at a website . In an interleaved experiment, you have two ranking algorithms, X and Y. Algorithm X would show results x 1 , x 2 , … x n in that order, and algorithm Y would show y 1 , y 2 , … y n . An interleaved experiment would intersperse results mixed together, e.g. x 1 , y 1 , x 2 , y 2 , … x n , y n with duplicate results removed. 
 
 One way to evaluate the algorithms would be to compare the click-through rate on results from the two algorithms. While this design is a powerful experiment design, it is limited in its applicability because the results must be homogenous. 
 
-#### Regression Discountinuity Design
+#### 3. Regression Discountinuity Design
 Regression Discontinuity Design (RDD) is a methodology that can be used whenever there is a clear threshold that identifies the Treatment population. Based on that threshold, we can reduce selection bias by identifying the population that is just below the threshold as Control and compared to the population that is just above the threshold as Treatment. 
 ![image](/img/rdd.png)
 
@@ -94,17 +94,17 @@ Fuzzy discountinuities:
 
 
 
-#### [Instrumented Variables and Natual Experiments](https://www.zhihu.com/question/29067965/answer/247659376)
+#### 4. [Instrumented Variables and Natual Experiments](https://www.zhihu.com/question/29067965/answer/247659376)
 Instrumental Variables (IV) is a technique that tries to approximate random assignment. Specifically, the goal is to identify an Instrument that allows us to approximate random assignment (this happens organically in a natural experiment) 
 
-#### Propensity Score Matching
+#### 5. Propensity Score Matching
 Another class of approaches here is to construct comparable Control and Treatment populations, often by segmenting the users by common confounds, in something akin to stratified sampling. The idea is to ensure that the comparison between Control and Treatment population is not due to population mix changes. For example, if we are examining an exogenous change of the impact of users changing from Windows to iOS, we want to ensure that we are not measuring a demographic difference in the population. 
 
 The key concern about PSM is that only observed covariates are accounted for; unaccounted factors may result in hidden biases. 
 
 
 
-#### [Difference in Differences](https://www.eddjberry.com/post/adjustment-in-a-b-testing/)
+#### 6. [Difference in Differences](https://www.eddjberry.com/post/adjustment-in-a-b-testing/)
 Randomization purpose vs Baseline difference:
 - Suppose we’ve found that the customers in our treatment group historically engaged with emails at a higher rate than our control group. A common thing we might be tempted to do is test whether this baseline difference is significant (Boer et al., 2015). These tests are often used to determine “whether randomization was successful” (Boer et al., 2015), but this represents a misunderstanding of why we randomise (Harvey, 2018). **We do not randomise to ensure that there are no baseline differences between our groups, we randomise to remove any relationship between baseline values and treatment assignment.** The test of baseline differences is then testing a hypothesis we already know to be true: that there is no association between baseline engagement and treatment assignment. We know that the baseline differences are the result of chance because we did the randomisation! 2 As Bland and Altman (2011) put it (as cited by Harvey, 2018):
 
