@@ -91,9 +91,26 @@ The key concern about PSM is that only observed covariates are accounted for; un
 
 
 #### [Difference in Differences](https://www.eddjberry.com/post/adjustment-in-a-b-testing/)
+Randomization purpose vs Baseline difference:
+- Suppose we’ve found that the customers in our treatment group historically engaged with emails at a higher rate than our control group. A common thing we might be tempted to do is test whether this baseline difference is significant (Boer et al., 2015). These tests are often used to determine “whether randomization was successful” (Boer et al., 2015), but this represents a misunderstanding of why we randomise (Harvey, 2018). **We do not randomise to ensure that there are no baseline differences between our groups, we randomise to remove any relationship between baseline values and treatment assignment.** The test of baseline differences is then testing a hypothesis we already know to be true: that there is no association between baseline engagement and treatment assignment. We know that the baseline differences are the result of chance because we did the randomisation! 2 As Bland and Altman (2011) put it (as cited by Harvey, 2018):
+
+If testing for baseline differences in irrelevant, then what should we do? In a simple experiment where we have no covariates, we might consider doing a difference-of-differences analysis. For example, consider the table below
+![image](/img/did.png)
+
+Limitation
+- While a diff-of-diffs analysis is certainly a useful starting point, it has some limitations. Most commonly people point out that it assumes the coefficient predicting post-experiment outcomes from pre-experiment values is 1
+
+When to include baseline performance
+- It might be tempting to think that we only need to include baseline performance in our model when there are differences between treatment and control at baseline. However, adjusting for baseline values by including them in our model will increase the precision of our estimated treatment effect, even when there aren’t baseline differences 
+
+Handling other covariates
+- For the model without the covariates, a significant effect of treatment is found in 58.9% of samples versus 89.8% for the covariate model. In other words, including the covariates increases our ability to detect the true effect. The simple model is therefore underpowered compared to the covariate model to detect an effect of the size used here.
+
+
 Geographically based experiments commonly use this technique. 
 
-Note that this method can also be applied even when you do not make the change, and the change happens exogenously. For example, when a change was made to the minimum wage in New Jersey, researchers who wanted to study its impact on employment levels in fast-food restaurants, compared it to eastern Pennsylvania, which matched on many characteristics 
+This method can also be applied even when you do not make the change, and the change happens exogenously. 
+- For example, when a change was made to the minimum wage in New Jersey, researchers who wanted to study its impact on employment levels in fast-food restaurants, compared it to eastern Pennsylvania, which matched on many characteristics.
 
 #### Pitfalls
 (1) Confounders (2)Spurious correlations
