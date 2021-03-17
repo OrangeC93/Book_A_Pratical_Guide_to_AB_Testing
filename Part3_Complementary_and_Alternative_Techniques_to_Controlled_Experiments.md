@@ -78,7 +78,21 @@ One way to evaluate the algorithms would be to compare the click-through rate on
 #### Regression Discountinuity Design
 Regression Discontinuity Design (RDD) is a methodology that can be used whenever there is a clear threshold that identifies the Treatment population. Based on that threshold, we can reduce selection bias by identifying the population that is just below the threshold as Control and compared to the population that is just above the threshold as Treatment. 
 ![image](/img/rdd.png)
-One key issue is again confounding factors. In RDD, the threshold discontinuity may be contaminated by other factors that share the same threshold. For example, a study of the impact of alcohol that chooses the legal age of 21 as the threshold may be contaminated by the fact that this is also the threshold for legal gambling. 
+
+[Implementing RD with regresssion](https://youtu.be/tWRsYWSP3fM?t=244)
+
+Things to worry about: 
+- In RDD, the threshold discontinuity may be contaminated by other factors that share the same threshold. 
+ - For example, a study of the impact of alcohol that chooses the legal age of 21 as the threshold may be contaminated by the fact that this is also the threshold for legal gambling. 
+- The underlying relationship is jumpy
+- Individuals are able to manipulate x to push themselves over the threshold
+
+Fuzzy discountinuities:
+- Sometimes being above a threshold means it's more likely that you'll be part of the treatment
+- This is the special case of an instrumental vairable
+- Use 2SLS with the instrument being a dummy for being above the threshold
+
+
 
 #### [Instrumented Variables and Natual Experiments](https://www.zhihu.com/question/29067965/answer/247659376)
 Instrumental Variables (IV) is a technique that tries to approximate random assignment. Specifically, the goal is to identify an Instrument that allows us to approximate random assignment (this happens organically in a natural experiment) 
