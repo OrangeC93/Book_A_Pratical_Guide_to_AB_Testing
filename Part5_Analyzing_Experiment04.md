@@ -36,9 +36,9 @@ Cohort Analysis:
   - If the cohort is not representative of the overall population, there may be external validity concerns because the analysis results may not be generalizable to the full population. You can use additional methods to improve the generalizability, such as a weighting adjustment based on stratification 
 
 Post-Period Analysis
-![image](/imag/post_period_analysis.png)
+![image](/img/post_period_analysis.png)
 Time Staggered Treatment
-![image](/imag/time_staggered_treatment.png)
+![image](/img/time_staggered_treatment.png)
 Holdback and reverse experiment
 - keeping 10% of users in Control for several weeks (or months) after launching the Treatment to 90% users 
 - we ramp 10% of users back into the Control several weeks (or months) after launching the Treatment to 100% of users. 
