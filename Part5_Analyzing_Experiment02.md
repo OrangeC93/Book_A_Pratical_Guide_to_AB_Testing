@@ -13,7 +13,7 @@ When the p-value for the Sample Ratio metric is low, that is, the probability of
 
 
 #### Scenario 2
-![image](/img/bing_scoreboard.png)
+![image](/img/bing_scorecard.png)
 Scorecard from Bing. The left column shows the meta-data, or metric names. The center column shows the statistics for each metric for the overall experiment. The right column shows the statistics for each metric for a segment of the population.
 - The middle columns shows small pvalue but the right column represents slightly over 96% of users; the excluded users were those that used an old version of the Chrome browser, which was the cause of the SRM. Also, a bot was not properly classified due to some changes in the Treatment, causing an SRM. Without the segment, the remaining 96% of users are properly balanced, and the metrics show no statistically significant movement in the five success metrics. 
 
