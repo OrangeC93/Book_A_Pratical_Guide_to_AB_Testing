@@ -38,9 +38,10 @@ There're challenges:
 
 (2)Post-Period Analysis
 - A key aspect of this method is that during the measurement period, users in the Treatment and Control groups are both exposed to the exact same features. 
+- This approach is effective at isolating impact from exogenous factors that change over time and from potential interactions with other newly launched features. Because the learned effect is measured separately, it offers more insights on why the effects are different short term vs. long term.
 ![image](/img/post_period_analysis.png)
-(3)Time Staggered Treatment
-- Measuring long-term effect after we observe the two time-staggered Treatments have converged 
+(3)Time Staggered Treatment(How long answered (2) method T period)
+- Measuring long-term effect after we observe the two time-staggered Treatments have converged, at this point, we can apply the post-period method after time t to measure the long-term effect.
 - Note that it is important to determine the practically significant delta and ensure that the comparison has enough statistical power to detect it. At this point, we can apply the post-period method after time t to measure the long-term effect. And this method assumes that the difference between the two Treatments grows smaller over time. 
 - In practice, you also need to ensure that there is enough time gap between the two staggered Treatments. If the learned effect takes some time to manifest, and the two Treatments start right after one another, there may not be enough time for the two Treatments to have a difference at the start of T1.
 ![image](/img/time_staggered_treatment.png).
