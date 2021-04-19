@@ -11,9 +11,10 @@
   - Concept drift: The performance of machine learning models trained on data that is not refreshed may degrade over time as distributions change. 
   - Software rot
 #### Why measure long-term effects?
-- Attribution
+- Attribution: This type of attribution is challenging because we need to consider both endogenous reasons such as user-learned effects, and exogenous reasons such as competitive landscape changes.
 - Institutional learning
   - What is the difference between short term and long term? If the difference is sizable, what is causing it? If there is a strong novelty effect, this may indicate a suboptimal user experience. 
+  - For example, if it takes a user too long to discover a new feature they like, you may expedite uptake by using in-product education. On the other hand, if many users are attracted to the new feature but only try it once, it may indicate low quality or click-bait. 
 - Generalization
 
 #### Long Running Experiments
