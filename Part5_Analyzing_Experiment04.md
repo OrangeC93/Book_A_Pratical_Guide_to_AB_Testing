@@ -31,15 +31,19 @@ There're challenges:
   - For measuring a time-extrapolated effect
 
 #### Alternative Methods for long-running experiments
-Cohort Analysis:
+(1)Cohort Analysis:
 - There are two important considerations to keep in mind: 
   - You need to evaluate how stable the cohort is For example, if the ID is based on cookies and when cookie churn rate is high, this method does not work well for correcting bias 
   - If the cohort is not representative of the overall population, there may be external validity concerns because the analysis results may not be generalizable to the full population. You can use additional methods to improve the generalizability, such as a weighting adjustment based on stratification 
 
-Post-Period Analysis
+(2)Post-Period Analysis
 ![image](/img/post_period_analysis.png)
-Time Staggered Treatment
-![image](/img/time_staggered_treatment.png)
-Holdback and reverse experiment
+(3)Time Staggered Treatment
+- Measuring long-term effect after we observe the two time-staggered Treatments have converged 
+- Note that it is important to determine the practically significant delta and ensure that the comparison has enough statistical power to detect it. At this point, we can apply the post-period method after time t to measure the long-term effect. And this method assumes that the difference between the two Treatments grows smaller over time. 
+- In practice, you also need to ensure that there is enough time gap between the two staggered Treatments. If the learned effect takes some time to manifest, and the two Treatments start right after one another, there may not be enough time for the two Treatments to have a difference at the start of T1.
+![image](/img/time_staggered_treatment.png).
+
+(4)Holdback and reverse experiment
 - keeping 10% of users in Control for several weeks (or months) after launching the Treatment to 90% users 
 - we ramp 10% of users back into the Control several weeks (or months) after launching the Treatment to 100% of users. 
