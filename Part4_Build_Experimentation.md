@@ -89,6 +89,5 @@ Results summeary and visualization
 - Highlight the OEC and critical metrics, but also show the many other metrics, including guardrails, quality, and so on. 
 - Present metrics as a relative change, with clear indications as to whether the results are statistically significant. 
 Use color-coding and enable filters, so that significant changes are salient. 
-
-Segment drill-downs, including automatically highlighting interesting segments, can help ensure that decisions are correct and help determine whether there are ways to improve the product for poorly behaving segments 
+- Segment drill-downs, including automatically highlighting interesting segments, can help ensure that decisions are correct and help determine whether there are ways to improve the product for poorly behaving segments 
 
