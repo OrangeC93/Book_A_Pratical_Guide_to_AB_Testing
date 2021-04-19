@@ -37,6 +37,7 @@ There're challenges:
   - If the cohort is not representative of the overall population, there may be external validity concerns because the analysis results may not be generalizable to the full population. You can use additional methods to improve the generalizability, such as a weighting adjustment based on stratification 
 
 (2)Post-Period Analysis
+- A key aspect of this method is that during the measurement period, users in the Treatment and Control groups are both exposed to the exact same features. 
 ![image](/img/post_period_analysis.png)
 (3)Time Staggered Treatment
 - Measuring long-term effect after we observe the two time-staggered Treatments have converged 
