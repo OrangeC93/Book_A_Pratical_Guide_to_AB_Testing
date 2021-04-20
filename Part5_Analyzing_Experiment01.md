@@ -30,7 +30,7 @@ One rule-of-thumb for the minimum number of samples needed for the average Y to
 
 #### Type I/II Erros and Power
 Type I and Type II: 
-- A Type I error  when we conclude that there is **a significant difference** between Treatment and Control when there is **no real difference** (假的说成真的，因此很多真的混杂着假的).
+- A Type I error  when we conclude that there is **a significant difference** between Treatment and Control when there is **no real difference** (假的说成真的，因此很多真的混杂着假的).The type I error rate or significance level is the probability of rejecting the null hypothesis given that it is true.
 - A Type II error is when we conclude that there is **no significant difference** when there **really is one**(真的说成假的，因此很多错过很多真的).
 - TRradeoff between these two errors: using a higher p-value threshold means a higher Type I error rate （可能会很多假的说成真的）but a smaller chance of missing a real difference（但是不会错过一个真的）, therefore a lower Type II error rate. 
 
