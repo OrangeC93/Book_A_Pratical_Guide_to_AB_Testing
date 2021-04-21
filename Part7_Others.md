@@ -46,3 +46,9 @@ https://medium.com/netflix-techblog/its-all-a-bout-testing-the-netflix-experimen
 
 ## Consideration
 - Long term goal: https://research.google/pubs/pub43887/
+
+
+## Network Effect
+- [Linkedin graph clustering method](https://engineering.linkedin.com/blog/2019/06/detecting-interference--an-a-b-test-of-a-b-tests)
+  - Cluster the LinkedIn graph into 10,000 clusters. The graph comprises all active LinkedIn members as nodes and their “connections” as edges.  
+  - Split these clusters into two parallel experiments: individual vs cluster based
