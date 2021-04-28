@@ -188,3 +188,25 @@ Applying a transformation, e.g. taking a log, also helps to reduce outlier impac
 
 #### Claming sucess with a borderline pvalue
 When a metric comes with a borderline p-value, it can be a sign of a false positive, and there are many such cases in the world of online A/B testing due to a large number of metrics computed for an experiment. We recommended for experimenters to evaluate experiment results by placing emphasis on strongly statistically significant metrics and (1)rerunning with larger traffic when metrics, in particular the OEC metrics, have borderline p-values. In cases where repeated reruns provide borderline p-values either due to small treatment effects or (2)when we cannot increase the traffic we can use Fishers Method to obtain more reliable conclusion
+
+#### Continuous monitoring and early stoppping
+(1) Making experiment owners aware of the pitfall, and establishing the guidelines that require making ship decision only at the pre-defined time point, is one approach to avoid this pitfall. 
+
+(2) Another approach is to adjust the p-values, to account for extra checking. 
+
+(3) Finally, in a Bayesian framework is proposed that, unlike NHST, naturally allows for continuous monitoring and early stopping.
+
+#### Assuming the metric movement is homogeneous
+Example: an experiment in Bing that evaluated  a  new  ad  auction  and  placement  algorithm, attempting to increase revenue by improving ad quality and keeping  the  number  of  ads  shown  roughly  the  same.  The experiment seemed to be very successful, increasing revenue by 2.3%, while at the same time decreasing the number of ads shown per page by 0.6%.  
+
+Reason: heterogeneous treatment effects over original pages and dup pages, while on dup pages the number of ads per page decreased dramatically, by 2.3%, the number of ads per page on the original pages actually increased by 0.3%.
+
+
+#### Segment interpretation
+Both groups of users, those who saw a deeplink (U1) and those who did not (U2), showed a statistically significant increase in Sessions per User, the key Bing metric. However, the combination (U1 + U2) did not show a statistically significant change in the metric. 
+
+Simpson’s paradox:
+- A common way to run into a Simpson’s paradox is to keep recursively  segmenting  the  users  until  a  statistically significant  difference  is  found. Trying  to  see  if  the metric improved at least for some subgroup of users, they keep recursively segmenting the user population until they see the desired effect.
+- This can be tested by conducting an SRM test (see Section 4) for each segment group.
+
+#### Novelty and Primacy effects
