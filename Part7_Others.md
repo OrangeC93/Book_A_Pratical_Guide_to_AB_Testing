@@ -148,3 +148,40 @@ For example: PTL
     -  i.PLT for non-back button loads
 
 #### Misinterpretation of Ratio Metrics
+Example: In one experiment a module located close to the bottom of the main page was moved to a higher position which requires users to scroll less to reach it. The result showed a 40% decrease in CTR of the module.
+- CTR: avg CTR/users
+
+Reason: 
+- There is no SRM.
+- When the numerator, the number of clicks on the module, and denominator, the number of times that the module was displayed to the users, of the metric were checked separately, it turned out that both were improved significantly but the denominator  moved  relatively  more  than  the  numerator; 200% and 74%, respectively. This interpretation does not hold when there is a change in the number of times the module was displayed to the users or when there is a change in the population of users who saw the module. 
+
+
+There're 2 ways to compute ratio metrics:
+- A: Average of ratios
+- B: Ratio of averages
+
+A has serveral pratical advantages over method B
+- High sensitivity
+- More resilient to outliers
+- Less likely to suffer from having a metric level SRM
+- Compute variance more easy
+  - Since A commupte an average over users, which is typically the unit of randomization in an experiment
+- Disadvantage: ratio metrics can be misleading or potentially invalid if the denominator of the metric changed
+
+Solution: to detect denomiator mismatch in ratio metrics, we recommend to define count metris for the numerator and denominator and provide those in the result alongside the ratio metric.
+
+#### Segment Interpretation
+
+#### Outlier
+Outliers can skew metric values and increase the variance of the metric making it more difficult to obtain statistically significant results. 
+
+Common outlier handling techniques include 
+- trimming (excluding the outlier values)
+- capping (replacing the outlier values  with  a  fixed  threshold  value)
+- windsorizing (replacing  the  outlier  values  with  the  value  at  specified percentile)
+
+For all these approaches, we always recommend having a metric that counts the number of values affected by the outlier handling logic in the Data Quality section, to be able to detect situations (bots labeling) like the one in our example. 
+
+Changing the metric to compute a percentile (25th, median, 75th, 95th are common) instead of the average is another way to handle outliers, though percentile metric are often less sensitive than averages, and are more expensive to compute. 
+
+Applying a transformation, e.g. taking a log, also helps to reduce outlier impact, but makes the metric values difficult to interpret.
