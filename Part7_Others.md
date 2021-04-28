@@ -75,7 +75,49 @@ https://medium.com/netflix-techblog/its-all-a-bout-testing-the-netflix-experimen
   - Run holdout experiment: Imagine you’re testing a feature that highlights professional milestones (such as getting a new job) achieved by network connections in a social media feed. This feature would likely be triggered intermittently, perhaps only once or twice a week, depending on who is in a member’s network. In such cases an experimental period of several weeks or months may be needed to ensure that members of the treatment group are exposed to enough updates to test the feature’s effect on feed quality, or how relevant users perceive the content to be.
 
 ## [Summit](https://alexdeng.github.io/public/files/ExpediaTestSummit.pdf)
-Assumptions underneath large scale A/B tests
+#### Assumptions underneath large scale A/B tests
 1. Randomization is performed on a fixed unit, e.g. user, page-view, document, game-session
 2. Independence (i.i.d.)
 3. Normal approximation by central limit theorem
+
+#### Variance of metrics are hugely underestimated 
+- Reasons: analysis units might not be independent, metrics are typiclly defined as average over the analysis unit
+- Solution: Delta Method: a ratio of two metrics, both are average of i.i.d. obervations the ratio metric converge to a normal distribution and formula for hte variance exists.
+  - ctr -> (clicks/users)/(pageviews/users)
+
+#### Complex Randomization
+- client experiment: client only receive new assignment when connected (randomized assignment are pushed to client every hour), apply changes at the next refresh window, app open or wake from background.
+- social sharing
+
+#### Insight Mining(chasing noises)
+- Finding unexpected interactions with other experiments
+- Look at time series of metric difference to reason about novelty effect, trend, weekend effect
+- Slice and dice using different dimensions and attributes to finally find a subpopulation that the treatment performs well/badly
+#### Normal Approximation
+- CLT
+- rule of thumb 355 * sknewness^2
+- Some metrics like Revenue/uu have large skewness (long tail, 0 inflated)
+
+![image](/img/normal_approximation.png)
+
+Solution:  Balanced Design
+
+#### Objective Bayesian Hypothesis Testing:
+- P-value assumes the null is true and then computes the False Positive Rate
+- With P(Null) and P(Alternative), we can truly compute P(Alternative|Data)
+- Note 1 – P(Alternative|Data) = P(Null|Data) is also known as the False Discover Rate (FDR)
+- FDR allows continuous monitoring: can stop the experiments once FDR is below a threshold
+- FDR also adjusts for (most) multiple testing. We can compute FDR for a scorecard of thousands of metrics and make decision
+
+
+
+#### New experiment 
+Traditional experimentation:
+- A fixed set of questions
+- Focus heavily on a good design to enable answering all the relevant questions
+
+Modern experimentation with big data:
+- A set of primary questions, but more after seeing the results
+- Focus on iteration. The goal of one experiment is to figure out what to do next and to test in the next iteration
+
+Hypothesis Testing -> Knowledge Discovery/Machine Learning
