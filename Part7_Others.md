@@ -123,4 +123,28 @@ Modern experimentation with big data:
 Hypothesis Testing -> Knowledge Discovery/Machine Learning
 
 
-## 12 pitfall: https://exp-platform.com/Documents/2017-08%20KDDMetricInterpretationPitfalls.pdf
+## [12 pitfall](https://exp-platform.com/Documents/2017-08%20KDDMetricInterpretationPitfalls.pdf)
+#### Metric Sample Ratio Mismatch
+Example: users click a link on msn.com which opened a new browser tab, resutls shows 8.32% increase in PLT(page loading time), why one line js change cause a large performance degradation.
+
+Reason: using browser back buttion causing a homepage reload. In the treatment, there was no back buttion option after opening a link in the new tab, but the homepage remianed open in the old tab so users could come back to it without a reload. The back button page reloads in the control were generally faster than the first page load in a session due to browser caching. With the faster back button page loads omitted in the treatment, treatment’s average PLT was substantially worse.
+
+What causes MSRM happen:
+- A change in user behaviour
+- Different loss rates in telemetry between control and treatment, in correct instrumentation of new features
+
+How to deal with:
+- Understand what parts of the metric differ
+- Isolate the parts that are not affected by mismatch and can still be trusted
+- A good start is to look separately at the numeratorand the denominator of the metric
+
+For example: PTL 
+- 1.Average homepage PTL per user
+  - a.Average homepage PLT per user with 1 homepage visit
+  - b.Average homepage PLT per user with 2+ homepage visit
+- 2.Number of homepage loads per user
+  -  a.Number of back button loads
+  -  b.Number of non back button loads
+    -  i.PLT for non-back button loads
+
+#### Misinterpretation of Ratio Metrics
