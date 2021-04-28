@@ -7,7 +7,7 @@ https://www.zhihu.com/column/p/49472487
 - Bing ads
 - Bing search
 
-[Exp-platform](https://exp-platform.com/2018StrataABtutorial/)
+Good resource: [Exp-platform](https://exp-platform.com/2018StrataABtutorial/)
 
 ## [Optimizely KDD 2017 Paper Talk](https://www.youtube.com/watch?v=AJX4W3MwKzU)
 - Sequential Testing
