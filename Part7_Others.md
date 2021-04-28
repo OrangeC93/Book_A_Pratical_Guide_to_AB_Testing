@@ -54,8 +54,8 @@ https://medium.com/netflix-techblog/its-all-a-bout-testing-the-netflix-experimen
   - Split these clusters into two parallel experiments: individual vs cluster based
 
 ## [Pitfalls of AB testing (HBR with LinkedIn and Netflix)](https://hbr.org/2020/03/avoid-the-pitfalls-of-a-b-testing)
-- (1) Not looking beyond averagr: firms should create different versions tailored to the preferences of important segments of users.
-  - Use metrics and approaches that reflect the value of different customer segments.
+- (1) Not looking beyond average: 
+  - Use metrics and approaches that reflect the value of different customer segments
     - Netfilx recommendation to heavy and light users: they alternates each users experience between treatment and control based on days. Also they developed a metric that balance the efforts on lightly and heavily engaged members to ensure that product changes don't benefit on e segment at the expense of another
   - Measure the impact across different levels of digital access
     - Netflix and LinkedIn track the upper, middle, and low percentiles of technical metrics(app loading time, delays before playback commences, and crash rates), Has the treatment slowed app loading relative to the control for both users in 5th of loading times and users in 95th, or has the treatment benefited users in the 5th while harming those in 95the, They user this approach to test innovations aimed at improving the quality of streaming video playback for different devices and network connectivity conditions
@@ -121,3 +121,6 @@ Modern experimentation with big data:
 - Focus on iteration. The goal of one experiment is to figure out what to do next and to test in the next iteration
 
 Hypothesis Testing -> Knowledge Discovery/Machine Learning
+
+
+## 12 pitfall: https://exp-platform.com/Documents/2017-08%20KDDMetricInterpretationPitfalls.pdf
