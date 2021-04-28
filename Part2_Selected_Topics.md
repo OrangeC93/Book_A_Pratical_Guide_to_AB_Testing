@@ -1,8 +1,14 @@
 ## Metrics for Experimentation and the Overall Evaluation Criterion 
+#### Expeirmentation Metrics Taxonomy
+- Data Quality metircs: are reuslts trustworthy?SRM
+- OEC: was the treatment successful
+- Guardrial metrics: did the treatment cause an unacceptable harm to key metircs
+- Local feature and diagnostic metrics: why OEC and guardrail metrics moved or did not move
+
 #### From Business Metrics to Metrics Appropriate for Experimentation
 Experimentation metrics must be measurable, attributasble, sensitive and timely. Then you may need to further augment that metric set with: 
 - (1) surrogate metrics 
-- (2) more granular metrics: have breakdown metrics, we can better understand what is driving the change.
+- (2) more granular metrics
 - (3) trustworthiness guardrails and data quality metircs 
 - (4) diagnostic and debug metircs 
 
@@ -24,15 +30,33 @@ When you have  k (independent) metrics, the probability of having at least one 
 ```
 
 #### Example1: OEC for Email at Amazon
-- Previous: fitness fucntion, give credit to a program based on the revenue it generated from users clicking thought the email. 
-- Problem: this metric is monotonically increasing with email volume.
-- After: (Revenue - unsubscribe LTV Loss)/n
+- Previous: "fitness fucntion", give credit to a program based on the revenue it generated from users clicking through the email. 
+- Problem: the click-through revenue OEC is optimizing for short-term revenue instead of user lifetime value. 
+- After: (Revenue - s* unsubscribe LTV Loss)/n
 
 #### Example2: OEC for Bing search Engine
 The two key search engine (Bing, Google) KPIs are Query Share (distinct queries) and Revenue, Should OEC be Queries/User and Revenue/User?
-- A ranking bug in an experiment resulted in very poor search results
-- Degraded (algorithmic) search results cause users to search more to complete their task, and ads appear more relevant
-- Distinct queries went up over 10%, and revenue went up over 30%
+- A ranking bug in an experiment resulted in very poor search results. Degraded (algorithmic) search results cause users to search more to complete their task, and ads appear more relevant. Therefore, Distinct queries went up over 10%, and revenue went up over 30%
+
+Queries/Month = Users/Month * Sessions/Users * Distinct queries/Session
+- Users per month: determined by experiment design
+- Distinct queries per task (or per session as a surrogate): it's hard to measure since we want users to find answers and complete tasks quickly, so queries/session should be smaller, but it may also means abandoment. 
+- Session per user: key metric to optimize, satisfied users viit more often 
+
+#### Other examples:
+Netflix: 
+- Subscription business
+- KPI: Retention (i.e. the fraction of users who return month over month)
+- OEC: Viewing Hours. Strong correlation between viewing hours and retention
+
+In fact, the Netflix team found a very strong correlation between viewing hours and retention. So, for instance, if a user watched only one hour of Netflix per month, then they were not as likely to renew their monthly subscription as if they watched 15 hours of Netflix per month. As a result, the Netflix team used viewing hours (or content consumption) as their strongest proxy metric for retention, and many tests at Netflix had the goal of increasing the number of hours users streamed.
+
+
+Coursera: 
+- Care about course completion, make money by users pay for certifications
+- KPIs: Course completions, # Certificates sold, Revenue
+- OEC: Test completion and Course engagement. Predictive of course completion and certificates sold
+
 
 
 ## Organizational Metrics
