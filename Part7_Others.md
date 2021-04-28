@@ -73,3 +73,9 @@ https://medium.com/netflix-techblog/its-all-a-bout-testing-the-netflix-experimen
 - (3) Focusing predominantly on short term
   - Get the length of experiments right: week 
   - Run holdout experiment: Imagine you’re testing a feature that highlights professional milestones (such as getting a new job) achieved by network connections in a social media feed. This feature would likely be triggered intermittently, perhaps only once or twice a week, depending on who is in a member’s network. In such cases an experimental period of several weeks or months may be needed to ensure that members of the treatment group are exposed to enough updates to test the feature’s effect on feed quality, or how relevant users perceive the content to be.
+
+## [Summit](https://alexdeng.github.io/public/files/ExpediaTestSummit.pdf)
+Assumptions underneath large scale A/B tests
+1. Randomization is performed on a fixed unit, e.g. user, page-view, document, game-session
+2. Independence (i.i.d.)
+3. Normal approximation by central limit theorem
