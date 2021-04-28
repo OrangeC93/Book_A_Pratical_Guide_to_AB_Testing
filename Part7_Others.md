@@ -210,3 +210,4 @@ Simpson’s paradox:
 - This can be tested by conducting an SRM test (see Section 4) for each segment group.
 
 #### Novelty and Primacy effects
+For funnel based scenarios it is crucial to measure all parts of the process. At every step of the funnel we need to ensure that the success rates are compared and not just the raw clicks or user counts. In addition,  we should  measure both conditional and unconditional success rate metrics. Conditional success rates are defined as proportion of users that complete the given step among users that attempted to start the step. Unconditional  success rates compute the success rate taking into consideration all users who started at the top of the funnel. The combination of these two types of metrics along with detailed breakdowns at each step is the best guiding light towards improving our main goal while maintaining at least the current success rate standards.  
