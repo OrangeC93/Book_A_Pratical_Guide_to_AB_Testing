@@ -23,9 +23,7 @@ Some types of Randomization Unit:
 
 When trying to decide on granularity, there're 2 main questions to consider:
 1. How important is the consistency of the user experience? (wether the user will notice the changes, As an extreme example, imagine that the experiment is on font color. If we use a fine granularity, such as page-level, then the font color could change with every page.)
-2. Which metrics matter? 
-
-Your choice of metrics and your choice of randomization unit also interact. Finer levels of granularity for randomization creates more units, so the variance of the mean of a metric is smaller and the experiment will have more statistical power to detect smaller changes. 
+2. Which metrics matter? Your choice of metrics and your choice of randomization unit also interact. Finer levels of granularity for randomization creates more units, so the variance of the mean of a metric is smaller and the experiment will have more statistical power to detect smaller changes. 
 
 Other concerns:
 - If features act across that level of granularity, you cannot use that level of granularity for randomization.
