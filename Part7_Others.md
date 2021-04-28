@@ -185,3 +185,6 @@ For all these approaches, we always recommend having a metric that counts the nu
 Changing the metric to compute a percentile (25th, median, 75th, 95th are common) instead of the average is another way to handle outliers, though percentile metric are often less sensitive than averages, and are more expensive to compute. 
 
 Applying a transformation, e.g. taking a log, also helps to reduce outlier impact, but makes the metric values difficult to interpret.
+
+#### Claming sucess with a borderline pvalue
+When a metric comes with a borderline p-value, it can be a sign of a false positive, and there are many such cases in the world of online A/B testing due to a large number of metrics computed for an experiment. We recommended for experimenters to evaluate experiment results by placing emphasis on strongly statistically significant metrics and (1)rerunning with larger traffic when metrics, in particular the OEC metrics, have borderline p-values. In cases where repeated reruns provide borderline p-values either due to small treatment effects or (2)when we cannot increase the traffic we can use Fishers Method to obtain more reliable conclusion
