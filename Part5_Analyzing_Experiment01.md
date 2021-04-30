@@ -1,36 +1,38 @@
 ## 17. The Statistics behind Online Controlled Experiments
 #### Two sample t test
 #### p value and confidence interval
-One way: **P value**, if there really is no difference between Treatment and Control, the probabiity that t would be at least this extreme.
+(1)One way: **P value**, if there really is no difference between Treatment and Control, the probabiity that t would be at least this extreme.
 
 - Common mistake for p value interpretation:
   - p-value captures the probability that the Null hypothesis is true given the data observed
     - We could use Byes rule to break it down: As indicated in the equation, to know whether the Null hypothesis is true based on data collected (posterior probability), you not only need a p-value but also the likelihood that the Null hypothesis is true. 
   ![image](/img/pvalue_bayes.png)
 
-Another way: check whether the **confidence interval** overlaps with zero. 
-- The delta is statistically significant at 0.05 significance level : 
-```If the 95% confidence interval does not contain zero ```
+(2)Another way: check whether the **confidence interval** overlaps with zero. 
+- The delta is statistically significant at 0.05 significance level If the 95% confidence interval does not contain zero 
 
 #### Normality Assumption
-Many people consider **the sample distribution of the metric Y** is a poor assumption because almost none of the metrics used in practice follow a normal distribution. However, **the average Y** usually does because of the Central Limit Theorem. As the sample size increases, the distribution of the mean Y becomes more normally distributed. 
+CLT: Many people consider **the sample distribution of the metric Y** is a poor assumption because almost none of the metrics used in practice follow a normal distribution. However, **the average Y** usually does because of the **Central Limit Theorem**. As the sample size increases, the distribution of the mean Y becomes more normally distributed. 
 
-Skewness and Normadistribution and Sample size:
+Minimum Sample size:
+- One rule-of-thumb for the minimum number of samples needed for the average Y to have normal distribution is 355 s^2 for each variant: s is the [skewness coefficient](https://www.itl.nist.gov/div898/handbook/eda/section3/eda35b.htm) of the sample distribution of the metric Y defined as below
+- This rule-of-thumb provides good guidance for when | s | > 1 but does not offer a useful lower bound when the distribution is symmetric or has small skewness. On the other hand, it is generally true that fewer samples are needed when skewness is smaller.
 
-One rule-of-thumb for the minimum number of samples needed for the average Y to have normal distribution is 355 s^2 for each variant: s is the [skewness coefficient](https://www.itl.nist.gov/div898/handbook/eda/section3/eda35b.htm) of the sample distribution of the metric Y defined as below
 ![image](/img/skewness.png)
 
-- Some metrics, especially revenue metrics, tend to have a high skewness coefficient. One effective way to reduce skewness is to **transform the metric** or **cap the values**. 
+Metrics: 
+- Some metrics, especially revenue metrics, tend to have a high skewness coefficient. Some effective ways to reduce skewness is to (1)**transform the metric**, (2)**cap the values**, (3)**new metrics** (4)**percentile metrics or trimmed means**
   - For example, after Bing capped Revenue/User to $10 per user per week, they saw skewness drop from 18 to 5, and the minimum sample needed drop tenfold from 114k to 10k. 
-  - This rule-of-thumb provides good guidance for when | s | > 1 but does not offer a useful lower bound when the distribution is symmetric or has small skewness. On the other hand, it is generally true that fewer samples are needed when skewness is smaller.
 - For two-sample t-tests, because you are looking at the difference of the two variables with similar distributions, the number of samples needed for the normality assumption to be plausible tends to be fewer. 
   - This is especially the case if Treatment and Control have equal traffic allocations 
+
+Test Normality:
 - If you ever wonder whether your sample size is large enough to assume normality, test it at least once with offline simulation . 
   - You can randomly shuffle samples across Treatment and Control to generate the null distribution and compare that distribution with the normal curve using statistical tests such as Kolmogorov – Smirnov and Anderson-Darling 
 
 #### Type I/II Erros and Power
 Type I and Type II: 
-- A Type I error  when we conclude that there is **a significant difference** between Treatment and Control when there is **no real difference** (假的说成真的，因此很多真的混杂着假的).The type I error rate or significance level is the probability of rejecting the null hypothesis given that it is true.
+- A Type I error when we conclude that there is **a significant difference** between Treatment and Control when there is **no real difference** (假的说成真的，因此很多真的混杂着假的).The type I error rate or significance level is the probability of rejecting the null hypothesis given that it is true.
 - A Type II error is when we conclude that there is **no significant difference** when there **really is one**(真的说成假的，因此很多错过很多真的).
 - TRradeoff between these two errors: using a higher p-value threshold means a higher Type I error rate （可能会很多假的说成真的）but a smaller chance of missing a real difference（但是不会错过一个真的）, therefore a lower Type II error rate. 
 
