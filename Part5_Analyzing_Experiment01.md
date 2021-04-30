@@ -2,14 +2,27 @@
 #### Two sample t test
 #### p value and confidence interval
 (1)One way: **P value**, if there really is no difference between Treatment and Control, the probabiity that t would be at least this extreme.
-
 - Common mistake for p value interpretation:
   - p-value captures the probability that the Null hypothesis is true given the data observed
-    - We could use Byes rule to break it down: As indicated in the equation, to know whether the Null hypothesis is true based on data collected (posterior probability), you not only need a p-value but also the likelihood that the Null hypothesis is true. 
-  ![image](/img/pvalue_bayes.png)
+    - We could use Byes rule to break it down: As indicated in the equation, to know whether the Null hypothesis is true based on data collected (posterior probability), you not only need a p-value but also the likelihood that the Null hypothesis is true. see pvalue_bayes.png.
 
 (2)Another way: check whether the **confidence interval** overlaps with zero. 
-- The delta is statistically significant at 0.05 significance level If the 95% confidence interval does not contain zero 
+- mean(sample x) - 1.96 * SEM <= 0 <= mean(sample x) + 1.96 * SEM
+- then, t<=1.96 or t>=1.96
+
+**SD vs SEM**
+SD measures the amount of variability, or dispersion, from the individual data values to the mean, how spread out the data is. In any distribution, [about 95% of values will be within 2 standard deviations of mean] https://s4be.cochrane.org/blog/2018/09/26/a-beginners-guide-to-standard-deviation-and-standard-error/
+- sqrt(sum([x - mean(x)]^2)/n)
+
+SEM measures how far the sample mean (average) of the data is likely to be from the true population mean. The SEM is always smaller than the SD.
+- SD/sqrt(n)
+
+**Factors influence p value**
+- (1) Effect size: A 7kg or 10 mmHg difference will have a lower P value (and more likely to be significant) than a 2-kg or 4 mmHg difference.
+- (2) Size of sample. The larger the sample the more likely a difference to be detected. Further, a 7 kg difference in a study with 500 participants will give a lower P value than 7 kg difference observed in a study involving 250 participants in each group.
+- (3) Spread of the data. The spread of observations in a data set is measured commonly with standard deviation. The bigger the standard deviation, the more the spread of observations and the lower the P value.
+
+
 
 #### Normality Assumption
 CLT: Many people consider **the sample distribution of the metric Y** is a poor assumption because almost none of the metrics used in practice follow a normal distribution. However, **the average Y** usually does because of the **Central Limit Theorem**. As the sample size increases, the distribution of the mean Y becomes more normally distributed. 
