@@ -32,12 +32,16 @@ Test Normality:
 
 #### Type I/II Erros and Power
 Type I and Type II: 
-- A Type I error when we conclude that there is **a significant difference** between Treatment and Control when there is **no real difference** (假的说成真的，因此很多真的混杂着假的).The type I error rate or significance level is the probability of rejecting the null hypothesis given that it is true.
-- A Type II error is when we conclude that there is **no significant difference** when there **really is one**(真的说成假的，因此很多错过很多真的).
-- TRradeoff between these two errors: using a higher p-value threshold means a higher Type I error rate （可能会很多假的说成真的）but a smaller chance of missing a real difference（但是不会错过一个真的）, therefore a lower Type II error rate. 
+- A Type I error: reject h0 when it's true (假的h1说成真的，因此很多真h0的混杂着假的).
+- A Type II error: failed to reject h0 when it's wrong (真的h1说成假的，因此很多错过很多真的h1).
+- Trade off between these two errors: using a higher p-value threshold means a higher Type I error rate （可能会很多假的说成真的）but a smaller chance of missing a real difference（但是不会错过一个真的）, therefore a lower Type II error rate. 
 
-Power is the probability of detecting a difference between the variants: rejecting the null, when there really is a difference.
-- Misinterpretation of Power: Many people consider power an absolute property of a test and forget that it is relative to the size of the effect you want to detect. An experiment that has enough power to detect a 10% difference does not necessarily have enough power to detect a 1% difference. 
+Power is (1) the probability of detecting a difference between the variants: rejecting the null, when there really is a difference, is (2) the probability of not committing a type 2 error. It is not a single value. It varies according to the underlying truth.
+
+[Factors affect Power](https://www.jospt.org/doi/pdfplus/10.2519/jospt.2001.31.6.307)
+- effect size: a larger difference between the means should be easier to detect and distinguish from the null hypothesis distribution, as the distance between the null hypothesis and research hypothesis distributions increases, the alpha area does not change, but the beta area decreases, with a corresponding increase in the 1 - P area.
+- sample size: sample size affects power by influencing the variability of the sampling distribution of mean differences
+- significance level: The lower the significance level, the lower the power of the test. If you reduce the significance level (e.g., from 0.05 to 0.01), the region of acceptance gets bigger. As a result, you are less likely to reject the null hypothesis. This means you are less likely to reject the null hypothesis when it is false, so you are more likely to make a Type II error. In short, the power of the test is reduced when you reduce the significance level; and vice versa.
 
 
 Challenge:
