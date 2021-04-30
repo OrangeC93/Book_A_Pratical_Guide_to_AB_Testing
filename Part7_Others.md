@@ -52,6 +52,7 @@ https://medium.com/netflix-techblog/its-all-a-bout-testing-the-netflix-experimen
 - [Linkedin graph clustering method](https://engineering.linkedin.com/blog/2019/06/detecting-interference--an-a-b-test-of-a-b-tests)
   - Cluster the LinkedIn graph into 10,000 clusters. The graph comprises all active LinkedIn members as nodes and their “connections” as edges.  
   - Split these clusters into two parallel experiments: individual vs cluster based
+- Doordash time switchback 
 
 ## [Pitfalls of AB testing (HBR with LinkedIn and Netflix)](https://hbr.org/2020/03/avoid-the-pitfalls-of-a-b-testing)
 - (1) Not looking beyond average: 
