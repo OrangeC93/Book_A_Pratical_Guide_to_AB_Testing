@@ -89,7 +89,7 @@ Multiple testing refers to any instance that involves the simultaneous testing o
 - This method also defines a new α’ to reach. This threshold is defined using the FWER and the number of tests.
 - α’ = 1 - (1 - FWER)^(1/m)
 
-**4. Many others .. **
+**4. Many others**
 
 **FDR Method**
 - FWER is way of adjusting α, resulting in too few hypotheses are passed the test.
@@ -105,3 +105,6 @@ We try to control the probability that the null hypothesis is true, given that t
 **Regression Method**
 #### Fisher's meta analysis
 Fisher ’ s method (or any other meta-analysis technique) is great for increasing power and reducing false-positives. You may have an experiment that is underpowered even after applying all power-increasing techniques, such as maximum power traffic allocation (see Chapter 15 ) and variance reduction (see Chapter 22 ). In this case, you can consider two or more (orthogonal) replications of the same experiment (one after another) and achieve higher power by combining the results using Fisher ’ s method. 
+
+
+#### [Novelty Effect](https://productds.com/wp-content/uploads/Novelty_Effect.html)
