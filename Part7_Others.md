@@ -82,7 +82,8 @@ https://medium.com/netflix-techblog/its-all-a-bout-testing-the-netflix-experimen
 
 #### Variance of metrics are hugely underestimated 
 - Reasons: analysis units might not be independent, metrics are typiclly defined as average over the analysis unit
-- Solution: Delta Method: a ratio of two metrics, both are average of i.i.d. obervations the ratio metric converge to a normal distribution and formula for hte variance exists.
+- Solution: Delta Method
+  - A ratio of two metrics, both are average of i.i.d. obervations the ratio metric converge to a normal distribution and formula for hte variance exists.
   - ctr -> (clicks/users)/(pageviews/users)
 
 #### Complex Randomization
