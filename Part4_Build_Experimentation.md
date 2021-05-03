@@ -14,6 +14,7 @@
 ## Instrumentation
 
 ## Choosing a Randomization Unit
+
 Some types of Randomization Unit:
 - Page-level: Each new web page viewed on a site is considered a unit. 
 - Session-level: This unit is the group of webpages viewed on a single visit. A session, or visit, is typically defined to end after 30 minutes of inactivity. 
@@ -30,13 +31,17 @@ Other concerns:
 - Similarly, if metrics are computed across that level of granularity, then they cannot be used to measure the results. 
 - Exposing users to different variants may violate the stable unit treatment value assumption (SUTVA)
 
-Randomization Unit and Analysis Unit 
+**Randomization Unit and Analysis Unit **
+
+Unit of analysis is basically the denominator of the metric
+
 - Recommend: If the **randomization unit** be the same as (or coarser than) the **analysis unit** in the metrics you care about, it is easier to correctly compute the variance of the metrics.  
   - For example, randomizing by page means that clicks on each pageview are independent, so computation for the variance of the mean, click-through rate (clicks/pageviews), is standard. 
 
-- If **randomization unit** be coarser than the **analysis unit**. Unit, such as randomizing by user and analyzing the click-through rate (by page), will work, but the experiment results can be skewed by bots that use a single user ID, e.g., a bot that has 10,000 pageviews all done using the same user ID. If this type of scenario is a concern, consider bounding what any individual user can contribute to the finer-grained metric or switching to a user-based metric such as the average click-through rate-per-user.
+- If **randomization unit(user)** be coarser than the **analysis unit(page)**. 
+  - Unit, such as randomizing by user and analyzing the click-through rate (by page), will work, but the experiment results can be skewed by bots that use a single user ID, e.g., a bot that has 10,000 pageviews all done using the same user ID. If this type of scenario is a concern, consider bounding what any individual user can contribute to the finer-grained metric or switching to a user-based metric such as the average click-through rate-per-user.
 
-- If **metrics** are computed at the user-level (e.g., sessions-per-user or revenue-per-user) and the **randomization** is at a finer granularity (i.e., page-level), the user's experience likely contains a mix of variants. As a result, computing metrics at the user-level is not meaningful; 
+- If the **randomization(page)** is at a finer than **metrics(user)** are computed at the user-level (e.g., sessions-per-user or revenue-per-user) the user's experience likely contains a mix of variants. As a result, computing metrics at the user-level is not meaningful; 
 
 User-level Radomization:
 - Signed-in user id: Signed-in IDs are typically stable not just across platforms, but also longitudinally across time. 
