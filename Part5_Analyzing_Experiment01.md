@@ -10,6 +10,8 @@
 - mean(sample x) - 1.96 * SEM <= 0 <= mean(sample x) + 1.96 * SEM
 - then, t<=1.96 or t>=1.96
 
+we are 95% confident that the population parameter is between X and X.
+
 **SD vs SEM**
 SD measures the amount of variability, or dispersion, from the individual data values to the mean, how spread out the data is. In any distribution, [about 95% of values will be within 2 standard deviations of mean] https://s4be.cochrane.org/blog/2018/09/26/a-beginners-guide-to-standard-deviation-and-standard-error/
 - sqrt(sum([x - mean(x)]^2)/n)
