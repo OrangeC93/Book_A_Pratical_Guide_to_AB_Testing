@@ -127,4 +127,47 @@ We try to control the probability that the null hypothesis is true, given that t
 Fisher ’ s method (or any other meta-analysis technique) is great for increasing power and reducing false-positives. You may have an experiment that is underpowered even after applying all power-increasing techniques, such as maximum power traffic allocation (see Chapter 15 ) and variance reduction (see Chapter 22 ). In this case, you can consider two or more (orthogonal) replications of the same experiment (one after another) and achieve higher power by combining the results using Fisher ’ s method. 
 
 
-#### [Novelty Effect](https://productds.com/wp-content/uploads/Novelty_Effect.html)
+#### [Novelty and Primacy Effect](https://productds.com/wp-content/uploads/Novelty_Effect.html)
+(1)Rule out the possibility: run tests on first time users
+
+(2)If test is already running: compare first time users to older users in the treatment group
+
+#### Interfrerence between Varians
+- Typical design
+  - Split users randomly
+  - Users are independent
+- Cases when assumption fails:
+  - Social network: facebook, linkedIn, Twitter
+    - Actual effect > treatment effect
+  - Two sided markets: uber, lyft, airbnb
+    - Resources are shared among control and treatment groups
+    - Actual effect < treatment effect
+
+Network effect:
+- Users behaviours are impacted by others
+- The effect can spillover the control group
+- The difference underestimates the treatment effect
+
+Two-sided markets:
+- Geo-based randomization
+  - Split by geolocations
+  - Eg, New York vs San Francisco
+  - Big variance since market are unique
+
+- Time-based randomization
+  - Split by day of week
+  - Assign all users to either treatment or control
+  - Only when treatment effect is in short time
+  - Works when treatment effect takes a short time, like surge pricing
+  - Does not when when treatment effect takes a long time, like referral program
+
+
+Social network:
+- Create network clusters:
+  - People in teract mostly whithin a cluster
+  - Assign cluster randomly
+- Ego-network randomization:
+  - Originated from LinedIn
+  - A cluster is composed of an ego and her alters
+  - One-out network effect: user either has the feature or not
+  - Simpler and more scalable
