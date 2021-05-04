@@ -109,11 +109,11 @@ Multiple testing refers to any instance that involves the simultaneous testing o
 - This method also defines a new α’ to reach. This threshold is defined using the FWER and the number of tests.
 - α’ = 1 - (1 - FWER)^(1/m)
 
-**4. Many others**
-
 **FDR Method**
 - FWER is way of adjusting α, resulting in too few hypotheses are passed the test.
+- FDR = E(false positives rejections)
 - While FWER methods control the probability for at least one Type I error, FDR methods control the expected Type I error proportion. In this way, FDR is considered to have greater power with the trade-off of the increased number Type I error rate.
+- Eg, with 200 metrics with FDR at 0.05, at least 1 false positive in 200 metrics
 
 **1. Benjamini–Hochberg (BH) correction**
 - BH method ranks the P-value from the lowest to the highest, then Pk < k/m * α.
