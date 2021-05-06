@@ -55,6 +55,25 @@ Examine variability of the effect estimate via sampling distributions(each distr
 #### Netflix
 https://medium.com/netflix-techblog/its-all-a-bout-testing-the-netflix-experimentation-platform-4e1ca458c15 
 
+During design, one approach we utilize is running repeated randomizations, i.e. **‘re-randomization’**. In particular, we keep randomizing until we find a randomization that gives us the maximum desired level of balance on key variables across test cells. This approach generally enables us to define more similar test groups (i.e. getting closer to apples to apples comparison).
+- we can only simultaneously balance on a limited number of observed variables, and it is very difficult to find identical geographic units on all dimensions, and
+- we can still face noisy results with large confidence intervals due to small sample size. 
+
+Method1:  Difference in differences (diff-in-diff or DID) comparison is a very common approach used in quasi experiments. 
+
+In diff-in-diff, we usually consider two time periods; pre and post intervention. We utilize the pre-intervention period to generate baselines for our metrics, and normalize post intervention values by the baseline. This normalization is a simple but very powerful way of controlling for inherent differences between treatment and control groups. For example, let’s say our success metric is signups and we are running a quasi experiment in France. We have Paris and Lyon in two test cells. We cannot directly compare signups in two cities as populations are very different. Normalizing with respect to pre-intervention signups would reduce variation and help us make comparisons at the same scale.
+
+Method2: Success Metrics With Historical Observations But Small Sample Size
+- High variation in outcome metrics combined with small sample size can be a problem to design a well powered experiment using traditional diff-in-diff like approaches.
+- We turn the intervention (e.g. advertising) “on” and “off” repeatedly over time in different patterns and geographic units to capture short term effects.
+- To estimate the treatment effect, we fit a dynamic linear model (aka DLM), a type of state space model where the observations are conditionally Gaussian.
+
+Method3: Success Metrics Without Historical Observations
+- We sometimes face cases where we don’t have success metrics with historical observations. For example, Netflix promotes its new shows that are yet to be launched on service to increase member engagement once the show is available.
+- We do this by using relevant pre-treatment proxies, e.g. viewing of similar shows, interest in Netflix originals or similar genres. 
+- We have observed that controlling for geographic as well as individual level differences work best in minimizing confounding effects and improving precision.           
+  - For example, if members in Toronto watch more Netflix originals than members in other cities in Canada, we should then control for pre-treatment Netflix originals viewing at both individual and city level to capture within and between unit variation separately.
+
 ## When should we A/B testing:
 - Established products: UI, Function
 - Fledgling products
