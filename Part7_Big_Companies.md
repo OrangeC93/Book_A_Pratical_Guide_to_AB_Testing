@@ -25,6 +25,21 @@ Dynamic P, cluster-based, variance reduction
 - https://medium.com/airbnb-engineering/experimentation-measurement-for-search-engine-optimization-b64136629760
 - https://youtu.be/rxQ6D-QQMWc?t=728
 
+Dynamic p value: how long to stop experiment
+- Plot dyas in experiment vs pvalue and treatment effect
+- Calculate sample size
+- Running simulations(with varying values for parameters like the real effect size, variance and different levels of certainty) and deriving a curve that gives us a dynamic (in time) p-value threshold to determine whether or not an early result is worth investigating
+
+
+Another lesson: breakdown by browers
+- redesign search page but turns out basically a null effect
+- segment by browser: most performe fine, except IE, he new design broke an important click-through action for certain older versions of IE
+
+It is good to be scientific about your relationship with the reporting system. I
+- f something doesn’t seem right or if it seems too good to be true, investigate it. A simple way of doing this is to run dummy experiments, but any knowledge about how the system behaves is useful for interpreting results.
+
+[Selection bias](https://medium.com/airbnb-engineering/selection-bias-in-online-experimentation-c3d67795cceb)
+
 #### Patreon (small company)
 
 https://patreonhq.com/please-please-dont-a-b-test-that-980a9630e4fb (公开了内部的Experiment Template)
