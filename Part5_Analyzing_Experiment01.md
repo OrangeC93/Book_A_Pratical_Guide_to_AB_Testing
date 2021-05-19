@@ -62,8 +62,15 @@ Challenges:
 - For online experiments, sample size estimation is more complex because online users visit over time, so the duration of the experiment also plays a role in the actual sample size of an experiment. Depending on the randomization unit, the sample variance σ^2 can also change over time. 
 - Another challenge is that with triggered analysis (see Chapter 20), the values σ^2 and δ change as the trigger conditions change across experiments. For these reasons, we present a more practical approach in Chapter 15 for deciding traffic allocation and the duration for most online experiments. 
 
-[Sample size & Power](https://cloud.tencent.com/developer/article/1544632)
+#### [Sample size & Power](https://cloud.tencent.com/developer/article/1544632)
+
 https://towardsdatascience.com/required-sample-size-for-a-b-testing-6f6608dd330a
+Type I error happens when we reject the null hypothesis when it should not be rejected. Type I error rate is the probability when Type I error happens, also known as significance level, or alpha. A common value for alpha is 0.05.
+
+Type II error happens when we fail to reject the null hypothesis when it should be rejected. Type II error rate is also known as beta.
+Statistical power is the probability that the test rejects the null hypothesis when it should be rejected. It is basically 1 minus beta. A common value for statistical power is 0.80 (so beta is 0.20).
+
+In order to obtain meaningful results, we want our test to have sufficient statistical power. And, sample size influence statistical power. For example, when comparing two means, the follow formula can be used to calculate statistical power. 
 
 ![image](/img/sample_size_mean.png)
 
