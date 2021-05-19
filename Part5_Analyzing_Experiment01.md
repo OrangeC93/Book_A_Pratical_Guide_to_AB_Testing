@@ -64,8 +64,8 @@ Challenges:
 
 #### [Sample size & Power](https://cloud.tencent.com/developer/article/1544632)
 
-https://towardsdatascience.com/required-sample-size-for-a-b-testing-6f6608dd330a
-Type I error happens when we reject the null hypothesis when it should not be rejected. Type I error rate is the probability when Type I error happens, also known as significance level, or alpha. A common value for alpha is 0.05.
+
+[Type I error](https://towardsdatascience.com/required-sample-size-for-a-b-testing-6f6608dd330a) happens when we reject the null hypothesis when it should not be rejected. Type I error rate is the probability when Type I error happens, also known as significance level, or alpha. A common value for alpha is 0.05.
 
 Type II error happens when we fail to reject the null hypothesis when it should be rejected. Type II error rate is also known as beta.
 Statistical power is the probability that the test rejects the null hypothesis when it should be rejected. It is basically 1 minus beta. A common value for statistical power is 0.80 (so beta is 0.20).
