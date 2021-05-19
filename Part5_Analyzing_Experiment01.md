@@ -62,7 +62,7 @@ Challenges:
 - For online experiments, sample size estimation is more complex because online users visit over time, so the duration of the experiment also plays a role in the actual sample size of an experiment. Depending on the randomization unit, the sample variance σ^2 can also change over time. 
 - Another challenge is that with triggered analysis (see Chapter 20), the values σ^2 and δ change as the trigger conditions change across experiments. For these reasons, we present a more practical approach in Chapter 15 for deciding traffic allocation and the duration for most online experiments. 
 
-Sample size & Power
+[Sample size & Power](https://cloud.tencent.com/developer/article/1544632)
 ![image](/img/sample_size_mean.png)
 ![image](/img/sample_size_proportion.png)
 
