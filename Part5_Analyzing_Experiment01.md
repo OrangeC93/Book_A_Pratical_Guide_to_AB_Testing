@@ -63,7 +63,10 @@ Challenges:
 - Another challenge is that with triggered analysis (see Chapter 20), the values σ^2 and δ change as the trigger conditions change across experiments. For these reasons, we present a more practical approach in Chapter 15 for deciding traffic allocation and the duration for most online experiments. 
 
 [Sample size & Power](https://cloud.tencent.com/developer/article/1544632)
+https://towardsdatascience.com/required-sample-size-for-a-b-testing-6f6608dd330a
+
 ![image](/img/sample_size_mean.png)
+
 ![image](/img/sample_size_proportion.png)
 
 
