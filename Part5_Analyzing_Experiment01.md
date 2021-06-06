@@ -90,18 +90,20 @@ Bias arises when the estimate and the true value of the mean are systematically 
 - http://home.uchicago.edu/amshaikh/webfiles/palgrave.pdf
 - https://towardsdatascience.com/an-overview-of-the-multiple-comparison-problem-166aa5fcaac5
 
-Multiple testing refers to any instance that involves the simultaneous testing of several hypotheses. This scenario is quite common in much of empirical research in economics. Some examples include: 
+Multiple testing refers to any instance that involves the simultaneous testing of several hypotheses. This scenario is quite common in much of empirical research in economics. 
+
+If one does not take the multiplicity of tests into account, then the probability that some of the true null hypotheses are rejected by chance alone may be unduly large. Take the case of S = 100 hypotheses being tested at the same time, all of them being true, with the size and level of each test exactly equal to α. For α = 0.05. Further, if all tests are mutually independent, then the probability that at least one true null hypothesis will be rejected is given by 1 − 0.95^100 = 0.994.
+
+Application senarios include: 
 - One fits a multiple regression model and wishes to decide which coefficients are different from zero
 - One compares several forecasting strategies to a benchmark and wishes to decide which strategies are outperforming the benchmark
 - One evaluates a program with respect to multiple outcomes and wishes to decide for which outcomes the program yields significant effects
 
  
 **FWER(family wise error rate) Methods**
-- The error rate indicates the probability of making one or more false discoveries when performing multiple hypotheses test.
-- FWER = 1 - (1 - α)^m
-- If one does not take the multiplicity of tests into account, then the probability that some of the true null hypotheses are rejected by chance alone may be large. For example k=100 hypotheses being testd at the same time, α = 0.05, one expects five true hypotheses to be rejected, if all tests mutually independent, then the probability that at least one true null hypothesis will be rejected is 1-0.95^100 = 0.994. The overall type I error increases as the number of tests increases.
+- FWER = 1 - (1 - α)^m. The error rate indicates the probability of making one or more false discoveries when performing multiple hypotheses test.
+- If we run a test (α = 0.05) to assess whether there is a statistically significant difference between two groups, the FWER is: 1 - (1-0.05) = 0.05. However, if we run the same test six times, the FWER would not be 5% anymore, but it would increase to ~26%: 1 - (1 - 0.05)^6 = 0.2649
 - In simpler terms, we are adjusting the α somehow to make sure the FWER ≤ α. This is to ensure that the Type I error always controlled at a significant level α. For example, when we have 20 features as independent variables for our prediction model, we want to do a significance test for all 20 features. It means all the 20 hypothesis tests are in one family.
-
 
 **1. Bonferroni**
 - The Bonferroni correction, which rely on some statistical adjustments made to p-values with the goal of reducing the chances of obtaining false-positive results, sets the significance cut-off at α/n.
