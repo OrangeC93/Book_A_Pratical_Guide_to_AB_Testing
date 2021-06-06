@@ -123,9 +123,9 @@ Application senarios include:
 
 **FDR Method**
 - FWER is way of adjusting α, resulting in too few hypotheses are passed the test.
-- FDR = E(false positives rejections)
+- FDR = E(false positives rejections) = E(#false positive/#rejections)
 - While FWER methods control the probability for at least one Type I error, FDR methods control the expected Type I error proportion. In this way, FDR is considered to have greater power with the trade-off of the increased number Type I error rate.
-- Eg, with 200 metrics with FDR at 0.05, at least 1 false positive in 200 metrics
+- [Eg, with 200 metrics with FDR at 0.05 which means you're okay with 5 false potivives and 95 true positives in every experiment, but for FWER or the overall alpha in this case would be o1, since you have at lease one false positive every time. FDR is 0.05 since most of the metrics that you're claiming have a significant difference actually do. So if you're trying to detect a signifiant changes across large number of metris, then cappting the false discovery rate instead of the family wiser error rate can be a lot lenient. ](https://classroom.udacity.com/courses/ud257/lessons/4085798776/concepts/41042786060923)
 
 **1. Benjamini–Hochberg (BH) correction**
 - BH method ranks the P-value from the lowest to the highest, then Pk < k/m * α.
