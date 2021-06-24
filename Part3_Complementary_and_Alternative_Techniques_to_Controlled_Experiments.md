@@ -113,7 +113,7 @@ Randomization purpose vs Baseline difference:
 - Suppose we’ve found that the customers in our treatment group historically engaged with emails at a higher rate than our control group. A common thing we might be tempted to do is test whether this baseline difference is significant (Boer et al., 2015). These tests are often used to determine “whether randomization was successful” (Boer et al., 2015), but this represents a misunderstanding of why we randomise (Harvey, 2018). **We do not randomise to ensure that there are no baseline differences between our groups, we randomise to remove any relationship between baseline values and treatment assignment.** The test of baseline differences is then testing a hypothesis we already know to be true: that there is no association between baseline engagement and treatment assignment. We know that the baseline differences are the result of chance because we did the randomisation! 2 As Bland and Altman (2011) put it (as cited by Harvey, 2018):
 
 If testing for baseline differences in irrelevant, then what should we do? In a simple experiment where we have no covariates, we might consider doing a difference-of-differences analysis. For example, consider the table below
-![image](img/did.png)
+![image](img/dif.png)
 
 Limitation
 - While a diff-of-diffs analysis is certainly a useful starting point, it has some limitations. Most commonly people point out that it assumes the coefficient predicting post-experiment outcomes from pre-experiment values is 1
