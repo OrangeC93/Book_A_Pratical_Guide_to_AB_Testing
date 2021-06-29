@@ -122,14 +122,16 @@ Application senarios include:
 - α’ = 1 - (1 - FWER)^(1/m)
 
 **FDR Method**
-- FWER is way of adjusting α, resulting in too few hypotheses are passed the test.
-- FDR = E(false positives rejections) = E(#false positive/#rejections)
+- FWER is way of adjusting α, resulting in too few hypotheses are passed the test. FDR = E(false positives rejections) = E(#false positive/#rejections)
 - While FWER methods control the probability for at least one Type I error, FDR methods control the expected Type I error proportion. In this way, FDR is considered to have greater power with the trade-off of the increased number Type I error rate.
-- [Eg, with 200 metrics with FDR at 0.05 which means you're okay with 5 false potivives and 95 true positives in every experiment, but for FWER or the overall alpha in this case would be o1, since you have at lease one false positive every time. FDR is 0.05 since most of the metrics that you're claiming have a significant difference actually do. So if you're trying to detect a signifiant changes across large number of metris, then cappting the false discovery rate instead of the family wiser error rate can be a lot lenient. ](https://classroom.udacity.com/courses/ud257/lessons/4085798776/concepts/41042786060923)
+- [The FDR approach adjusts the p-value for a series of tests. A p-value gives you the probability of a false positive on a single test; If you’re running a large number of tests from small samples (which are common in fields like genomics and protoemics), you should use q-values instead](https://www.statisticshowto.com/false-discovery-rate/)
+  - A p-value of 5% means that 5% of all tests will result in false positives.
+  - A q-value of 5% means that 5% of significant results will be false positives.
 
 **1. Benjamini–Hochberg (BH) correction**
 - BH method ranks the P-value from the lowest to the highest, then Pk < k/m * α.
-- We keep repeating the equation until we stumbled into a rank where the P-value is Fail to Reject the Null Hypothesis. 
+- [We keep repeating the equation until we stumbled into a rank where the P-value is Fail to Reject the Null Hypothesis.](https://www.gs.washington.edu/academics/courses/akey/56008/lecture/lecture10.pdf) 
+![image](/img/fdr_eg.png)
 
 **2. The positive False Discovery Rate**
 We try to control the probability that the null hypothesis is true, given that the test rejected the null. This method works by first fixing the rejection region, then estimating α, which is quitethe opposite of how the FDR is handled.
