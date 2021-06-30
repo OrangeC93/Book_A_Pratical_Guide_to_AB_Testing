@@ -2,22 +2,35 @@
 #### Two sample t test
 #### p value and confidence interval
 (1)One way: **P value**, if there really is no difference between Treatment and Control, the probabiity that t would be at least this extreme.
-- Common mistake for p value interpretation:
-  - p-value captures the probability that the Null hypothesis is true given the data observed
-    - We could use Byes rule to break it down: As indicated in the equation, to know whether the Null hypothesis is true based on data collected (posterior probability), you not only need a p-value but also the likelihood that the Null hypothesis is true. see pvalue_bayes.png.
+- common mistake for p value interpretation:
+  - ❌ p-value captures the probability that the Null hypothesis is true given the data observed 
+    - we could use Byes rule to break it down: As indicated in the equation, to know whether the Null hypothesis is true based on data collected (posterior probability), you not only need a p-value but also the likelihood that the Null hypothesis is true. see pvalue_bayes.png.
 
-(2)Another way: check whether the **confidence interval** overlaps with zero. 
-- mean(sample x) - 1.96 * SEM <= 0 <= mean(sample x) + 1.96 * SEM
-- then, t<=1.96 or t>=1.96
-
-we are 95% confident that the population parameter is between X and X.
+(2)Another way: check whether the [**confidence interval**](https://www.socscistatistics.com/confidenceinterval/default3.aspx) overlaps with zero
+- we fail to reject the hypothesis if:
+  - [mean(sample x) - 1.96 * SEM <= 0 <= mean(sample x) + 1.96 * SEM](http://www.jerrydallal.com/LHSP/sigtest.htm)
+  - -1.96<=(mean(x) - u)/(s/sqrt(n))<=1.96, (mean(x) - u)/(s/sqrt(n)) can be denoted by symbol t
+- The test can be summarized as: Reject the hypothesis that the population mean is 0 if and only if the absolute value of t is greater than 1.96.
 
 **SD vs SEM**
-SD measures the amount of variability, or dispersion, from the individual data values to the mean, how spread out the data is. In any distribution, [about 95% of values will be within 2 standard deviations of mean] https://s4be.cochrane.org/blog/2018/09/26/a-beginners-guide-to-standard-deviation-and-standard-error/
-- sqrt(sum([x - mean(x)]^2)/n)
+Variance: Measure 
+SD is a measure of the amount of variation or dispersion of a set of values
+- SDM measures the amount of variability from the individual data values to the mean, how spread out the data is. In any distribution, [about 95% of values will be within 2 standard deviations of mean](https://s4be.cochrane.org/blog/2018/09/26/a-beginners-guide-to-standard-deviation-and-standard-error/)
+  - sqrt(sum([x - mean(x)]^2)/n), n-1 if its the variance of a sample
 
-SEM measures how far the sample mean (average) of the data is likely to be from the true population mean. The SEM is always smaller than the SD.
-- SD/sqrt(n)
+SE is the standard deviation of its sampling distribution
+- SEM measures how far the sample mean (average) of the data is likely to be from the true population mean. The SEM is always smaller than the SD. Due to CLT: the sampling distribution of the sample mean approaches a normal distribution as the sample size gets larger. In addition, the normal distribution has the mean equals to the population mean, and the standard deviation equals to population standard deviation divided by the square root of sample size n. Thus, the standard error of the mean is the sample standard deviation divided by the square root of sample size n, if the population standard deviation is unknown. 
+  - for a mean: SDM/sqrt(n)
+  - for the difference beween two means, assuming equal varainces (or unequal variances)
+- [SE of median](https://towardsdatascience.com/how-to-estimate-the-standard-error-of-the-median-the-bootstrap-strategy-ed09cccb838a): Unfortunately, the Central Limit Theory does not apply to the median, we need bootstrap method.
+  - (1)take n items from the given sample as a new sample, from this sample, we can easily calculate the sample median, (2)repeat the previous procedure for B rounds, and we will get B new samples, with B sample medians, (3)now we have got an empirical distribution of medians, thus we can estimate the standard error of medians from them: calculate the mean of the previous sample of medians, calculate the variation, calculate the standard error, which is the standard deviation of the empirical sample
+
+**[Z Statistic vs T Statistic](https://www.stratascratch.com/blog/a-comprehensive-statistics-cheat-sheet-for-data-science-interviews/)**
+- A Z-test is a hypothesis test with a normal distribution that uses a z-statistic. A z-test is used when know the population variance or if don’t know the population variance but have a large sample size.
+- A T-test is a hypothesis test with a t-distribution that uses a t-statistic. You would use a t-test when don’t know the population variance and have a small sample size. You also need the degrees of freedom to convert a t-statistic to a p-value.
+![image](/img/t-statistic.png)
+When to use:
+![image](/img/t_test_z_test.png)
 
 **Factors influence p value**
 - (1) Effect size: A 7kg or 10 mmHg difference will have a lower P value (and more likely to be significant) than a 2-kg or 4 mmHg difference.
@@ -122,9 +135,9 @@ Application senarios include:
 - α’ = 1 - (1 - FWER)^(1/m)
 
 **FDR Method**
-- FWER is way of adjusting α, resulting in too few hypotheses are passed the test. FDR = E(false positives rejections) = E(#false positive/#rejections)
+- **FWER** is way of adjusting α, resulting in too few hypotheses are passed the test. **FDR** = E(false positives rejections) = E(#false positive/#rejections)
 - While FWER methods control the probability for at least one Type I error, FDR methods control the expected Type I error proportion. In this way, FDR is considered to have greater power with the trade-off of the increased number Type I error rate.
-- [The FDR approach adjusts the p-value for a series of tests. A p-value gives you the probability of a false positive on a single test; If you’re running a large number of tests from small samples (which are common in fields like genomics and protoemics), you should use q-values instead](https://www.statisticshowto.com/false-discovery-rate/)
+- [The FDR approach adjusts the p-value for a series of tests. A p-value gives you the probability of a false positive on a single test; If you’re running a large number of tests from small samples (which are common in fields like genomics and protoemics), you should use **q-values** instead](https://www.statisticshowto.com/false-discovery-rate/)
   - A p-value of 5% means that 5% of all tests will result in false positives.
   - A q-value of 5% means that 5% of significant results will be false positives.
 
