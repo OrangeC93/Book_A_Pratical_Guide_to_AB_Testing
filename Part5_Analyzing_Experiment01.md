@@ -36,7 +36,41 @@ When to use:
 - (1) Effect size: A 7kg or 10 mmHg difference will have a lower P value (and more likely to be significant) than a 2-kg or 4 mmHg difference.
 - (2) Size of sample. The larger the sample the more likely a difference to be detected. Further, a 7 kg difference in a study with 500 participants will give a lower P value than 7 kg difference observed in a study involving 250 participants in each group.
 - (3) Spread of the data. The spread of observations in a data set is measured commonly with standard deviation. The bigger the standard deviation, the more the spread of observations and the lower the P value.
+#### [ANOVA](https://www.statisticshowto.com/probability-and-statistics/hypothesis-testing/anova/)
 
+**One-way or Two-way** refers to the number of independent variables (IVs) in your Analysis of Variance test.
+- One-way has one independent variable (with 2 levels). For example: brand of cereal,
+- Two-way has two independent variables (it can have multiple levels). For example: brand of cereal, calories.
+
+**Groups or levels** are different groups within the same independent variable. 
+- In the above example, your levels for “brand of cereal” might be Lucky Charms, Raisin Bran, Cornflakes — a total of three levels. 
+
+**Replication**: It’s whether you are replicating (i.e. duplicating) your test(s) with multiple groups. With a two way ANOVA with replication , you have two groups and individuals within that group are doing more than one thing
+
+**Types of Test**
+There are two main types: one-way and two-way. Two-way tests can be with or without replication.
+- One-way ANOVA between groups: used when you want to test two groups to see if there’s a difference between them.
+- Two way ANOVA without replication: used when you have one group and you’re double-testing that same group. For example, you’re testing one set of individuals before and after they take a medication to see if it works or not.
+- Two way ANOVA with replication: Two groups, and the members of those groups are doing more than one thing. For example, two groups of patients from different hospitals trying two different therapies.
+
+**One-way ANOVA:**
+- A one way ANOVA is used to compare two means from two independent (unrelated) groups using the F-distribution. The null hypothesis for the test is that the two means are equal. Therefore, a significant result means that the two means are unequal.
+
+**Limitation of one-way:**
+- A one way ANOVA will tell you that at least two groups were different from each other. But it won’t tell you which groups were different. If your test returns a significant f-statistic, you may need to run an ad hoc test (like the Least Significant Difference test) to tell you exactly which groups had a difference in means.
+
+**Two-way ANOVA**
+The results from a Two Way ANOVA will calculate a main effect and an interaction effect. The main effect is similar to a One Way ANOVA: each factor’s effect is considered separately. With the interaction effect, all factors are considered at the same time. Two null hypotheses are tested if you are placing one observation in each cell. For this example, those hypotheses would be:
+- H01: All the income groups have equal mean stress.
+- H02: All the gender groups have equal mean stress.
+- H03: The factors are independent or the interaction effect does not exist.
+
+An F-statistic is computed for each hypothesis you are testing.
+**Assumption**
+- The population must be close to a normal distribution.
+- Samples must be independent.
+- Population variances must be equal (i.e. homoscedastic).
+- Groups must have equal sample sizes.
 
 
 #### Normality Assumption
