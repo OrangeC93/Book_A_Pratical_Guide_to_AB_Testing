@@ -95,7 +95,10 @@ Type I and Type II:
 - A Type II error: failed to reject false h0 (真的说成假的，因此很多错过很多真的).
 - Trade off between these two errors: using a higher p-value threshold means a higher Type I error rate （可能会很多假的说成真的）but a smaller chance of missing a real difference（但是不会错过一个真的）, therefore a lower Type II error rate. 
 
-Power is (1) the probability of detecting a difference between the variants: rejecting the null, when there really is a difference, is (2) the probability of not committing a type 2 error. It is not a single value. It varies according to the underlying truth.
+**Power** is (1) the probability of detecting a difference between the variants: rejecting the null, when there really is a difference, is (2) the probability of not committing a type 2 error. It is not a single value. It varies according to the underlying truth.
+
+[General conversion: 80% but could be more, which means a true difference will be missed 20% of the time](https://www.youtube.com/watch?v=KIRwsYTR62A) 
+  - For most researchers: Type 1 error are 4 times more serious than Type 2 errors so 0.05*
 
 [Factors affect Power](https://www.jospt.org/doi/pdfplus/10.2519/jospt.2001.31.6.307)
 - (1) effect size: a larger difference between the means should be easier to detect and distinguish from the null hypothesis distribution, as the distance between the null hypothesis and research hypothesis distributions increases, the alpha area does not change, but the beta area decreases, with a corresponding increase in the 1 - P area.
@@ -106,13 +109,20 @@ Challenges:
 - For online experiments, sample size estimation is more complex because online users visit over time, so the duration of the experiment also plays a role in the actual sample size of an experiment. Depending on the randomization unit, the sample variance σ^2 can also change over time. 
 - Another challenge is that with triggered analysis (see Chapter 20), the values σ^2 and δ change as the trigger conditions change across experiments. For these reasons, we present a more practical approach in Chapter 15 for deciding traffic allocation and the duration for most online experiments. 
 
-#### [Sample size & Power](https://cloud.tencent.com/developer/article/1544632)
+#### [Sample size & Power Analysis](https://cloud.tencent.com/developer/article/1544632)
+[Main output of a power analysis: estimation of an appropriate sample size](https://www.youtube.com/watch?v=KIRwsYTR62A)
+- Too big: waster of resources
+- Too small: may miss the effect
+- Grants: justification of sample size
+- Publications: reviewers ask for power calculation evidence
 
-
-[Type I error](https://towardsdatascience.com/required-sample-size-for-a-b-testing-6f6608dd330a) happens when we reject the null hypothesis when it should not be rejected. Type I error rate is the probability when Type I error happens, also known as significance level, or alpha. A common value for alpha is 0.05.
-
-Type II error happens when we fail to reject the null hypothesis when it should be rejected. Type II error rate is also known as beta.
-Statistical power is the probability that the test rejects the null hypothesis when it should be rejected. It is basically 1 minus beta. A common value for statistical power is 0.80 (so beta is 0.20).
+Power Analysis depends on relationship between 6 variables:
+- The difference of biological interest
+- The variability in the data(standard deviation)
+- Power
+- Significance level
+- Sample size
+- One or Two sided test: two times easier to reach significance with a one-tailed than a two tailed
 
 In order to obtain meaningful results, we want our test to have sufficient statistical power. And, sample size influence statistical power. For example, when comparing two means, the follow formula can be used to calculate statistical power. 
 
