@@ -16,11 +16,11 @@ SD is a measure of the amount of variation or dispersion of a set of values
 SE is the standard deviation of its sampling distribution
 - SEM measures how far the sample mean (average) of the data is likely to be from the true population mean. The SEM is always smaller than the SD. Due to CLT: the sampling distribution of the sample mean approaches a normal distribution as the sample size gets larger. In addition, the normal distribution has the mean equals to the population mean, and the standard deviation equals to population standard deviation divided by the square root of sample size n. Thus, the standard error of the mean is the sample standard deviation divided by the square root of sample size n, if the population standard deviation is unknown. 
   - for a mean: SDM/sqrt(n)
-  - for the difference beween two means: sqrt(SDM1^2 + SDM2^2)
+  - [for the difference beween two means: sqrt(SDM1^2 + SDM2^2)](https://online.stat.psu.edu/stat100/lesson/9/9.3)
 - [SE of median](https://towardsdatascience.com/how-to-estimate-the-standard-error-of-the-median-the-bootstrap-strategy-ed09cccb838a): Unfortunately, the Central Limit Theory does not apply to the median, we need bootstrap method.
   - (1)take n items from the given sample as a new sample, from this sample, we can easily calculate the sample median, (2)repeat the previous procedure for B rounds, and we will get B new samples, with B sample medians, (3)now we have got an empirical distribution of medians, thus we can estimate the standard error of medians from them: calculate the mean of the previous sample of medians, calculate the variation, calculate the standard error, which is the standard deviation of the empirical sample
-- SE of proportion: sqrt(p(1-p)/n)
-  - for the difference between two proportions: sqrt(SDP1^2 + SDP2^2)
+- SE of proportion: [sqrt(p(1-p)/n)](https://online.stat.psu.edu/stat100/lesson/9/9.1)
+  - [for the difference between two proportions: sqrt(SDP1^2 + SDP2^2)](https://online.stat.psu.edu/stat100/lesson/9/9.3)
 
 **[Z Statistic vs T Statistic](https://www.stratascratch.com/blog/a-comprehensive-statistics-cheat-sheet-for-data-science-interviews/)**
 - A Z-test is a hypothesis test with a normal distribution that uses a z-statistic. A z-test is used when know the population variance or if don’t know the population variance but have a large sample size.
